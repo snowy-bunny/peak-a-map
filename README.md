@@ -78,7 +78,7 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
 
   
 2. Installing **PeakAMap**:
-   - Go to [PeakAMap Thunderstore page](https://thunderstore.io/c/peak/p//) > "Manual Download".
+   - Go to [PeakAMap Thunderstore page](https://thunderstore.io/c/peak/p/snowybunny/PeakAMap/) > "Manual Download".
    - This downloads a `.zip` file. Navigate to this (likely in your "Downloads" folder).
    - Extract the `.zip` file.
 
