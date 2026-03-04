@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		
+		<AssemblyName>com.github.snowybunny.PeakAMap</AssemblyName>
+		<AssemblyTitle>PeakAMap</AssemblyTitle>
+		<Version>1.0.0</Version>
+  </PropertyGroup>
+	
+	<Target Name="OrganizeFiles" AfterTargets="Build">
+		<ItemGroup>
+			<DataDir Include=".\**\data\**\*.*" />
+		</ItemGroup>
+
+		<Message Text="OrganizeFiles → Copying @(DataDir) to $(TargetDir)$(AssemblyTitle)\" Importance="High" />
+		<Copy SourceFiles="@(DataDir)" DestinationFolder="$(TargetDir)$(AssemblyTitle)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+
+		<Message Text="OrganizeFiles → Moving $(TargetPath) to $(TargetDir)$(AssemblyTitle)\" Importance="High" />
+		<Move SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)$(AssemblyTitle)\" />
+	</Target>
+
+</Project>

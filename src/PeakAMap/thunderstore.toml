@@ -1,0 +1,44 @@
+[config]
+schemaVersion = "1.0.0"
+
+[general]
+repository = "https://thunderstore.io"
+
+[package]
+namespace = "snowybunny"
+name = "PeakAMap"
+description = "Find out what biomes are currently in rotation and select a map to play with an in-game UI."
+websiteUrl = "https://github.com/snowy-bunny/peak-a-mod"
+containsNsfwContent = false
+
+[package.dependencies]
+BepInEx-BepInExPack_PEAK = "5.4.2403"
+
+[build]
+icon = "../../icon.png"
+readme = "../../README.md"
+outdir = "../../artifacts/thunderstore/"
+
+[[build.copy]]
+source = "../../artifacts/bin/PeakAMap/release/PeakAMap"
+target = "plugins/PeakAMap/"
+
+[[build.copy]]
+source = "../../CHANGELOG.md"
+target = "/"
+
+[[build.copy]]
+source = "../../LICENSE"
+target = "/"
+
+# The following config options only apply when using TCLI to publish to Thunderstore directly:
+
+[publish]
+# See communities at:
+# https://thunderstore.io/api/experimental/community/
+communities = [ "peak", ]
+
+[publish.categories]
+# See categories at:
+# https://thunderstore.io/api/experimental/community/peak/category/
+peak = [ "mods", ]
