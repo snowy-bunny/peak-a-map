@@ -8,7 +8,7 @@ repository = "https://thunderstore.io"
 namespace = "snowybunny"
 name = "PeakAMap"
 description = "Find out what biomes are currently in rotation and select a map to play with an in-game UI."
-websiteUrl = "https://github.com/snowy-bunny/peak-a-mod"
+websiteUrl = "https://github.com/snowy-bunny/peak-a-map"
 containsNsfwContent = false
 
 [package.dependencies]
