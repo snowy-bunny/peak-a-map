@@ -18,8 +18,8 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
   
   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/biomes-hud-english.png?raw=true" width=800px>
 
-	> [!TIP] Tip: This feature is optional.
-  If you don't like having extra text on your screen, this feature can be disabled in your `.cfg` file. Instructions on how to do this is [further below](#configuration).
+	> TIP: This feature is optional.
+  If you don't like having extra text on your screen, this feature can be disabled in your `.cfg` file. Instructions on how to do this is further below in the "Configuration" section.
 
 - **Map Rotation Info is Preloaded for the Suppported PEAK Version**
   - Currently supporting PEAK 1.54.c
@@ -27,18 +27,18 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
 - **Support for Future Map Patches** 
   - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
   - If PeakAMap doesn't have data for the current patch or there are issues with the file containing this data, the map rotation info will be loaded, searched, and saved at the game's start
-      > [!TIP] Tip: This feature is optional.
-      If you're only interested in selecting a map without the biome info or if preloading takes too long. This feature can be disabled in your `.cfg` file. Instructions on how to do this is [further below](#configuration).
+      > TIP: This feature is optional.
+      If you're only interested in selecting a map without the biome info or if preloading takes too long. This feature can be disabled in your `.cfg` file. Instructions on how to do this is further below in the "Configuration" section.
 
 - **Partial Language Support** 
   - Some phrases/words that were already supported in game will be supported in PeakAMap.
 
 - **Biome Variant and Open Tomb Info**
   - Extra information on current maps are stored in the `.\BepInEx\plugins\PeakAMap\data\` folder in `map_rotation-<version>.json`. *(Note: The `<version>` refers to the **PEAK** game version, not PeakAMap mod version).*
-    > [!NOTE] Note: Only available inside of file. Not shown in game.
+    > NOTE: Only available inside of file. Not shown in game.
     Currently, you can only view the **biome variant** and **open tomb** information in the **PeakAMap's data file**. _There are plans to add a way to display these in game, but it is not supported at the moment._
   
-    > [!CAUTION] Caution: DO NOT modify these files.
+    > CAUTION: DO NOT modify these files.
     Doing so may cause inaccurate biome information to display in the PeakAMap UI or preloading to start due to failure to read the file.
 
 ## Installation
