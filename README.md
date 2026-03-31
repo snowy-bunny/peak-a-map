@@ -4,7 +4,7 @@
 
 PeakAMap searches through each map to find out what biomes they have and lets players pick from them. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new patch happens, then PeakAMap will automatically create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
 
-#### **Currently Supports:** PEAK 1.54.c
+#### **Currently Supports:** PEAK 1.60.b
 
 ## Features
 
@@ -22,7 +22,7 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
   If you don't like having extra text on your screen, this feature can be disabled in your `.cfg` file. Instructions on how to do this is further below in the "Configuration" section.
 
 - **Map Rotation Info is Preloaded for the Suppported PEAK Version**
-  - Currently supporting PEAK 1.54.c
+  - Currently supporting PEAK 1.60.b
   
 - **Support for Future Map Patches** 
   - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
