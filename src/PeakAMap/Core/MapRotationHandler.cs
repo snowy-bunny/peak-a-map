@@ -67,6 +67,8 @@ public sealed class MapRotationHandler
 
     private readonly string _loadingId = "LOADING";
 
+    private readonly int _maxLoadedScenes = 15; 
+
     private bool IsValidMapBiome(int index)
     {
         return !(CurrMapRotation.MapBiomes[index] == null);
@@ -102,7 +104,7 @@ public sealed class MapRotationHandler
             string progressText = $"{i + 1}/{_sceneNames.Length}";
             LocalizedText.mainTable[_loadingId][(int)LocalizedText.CURRENT_LANGUAGE] = $"{originalLoadingText} ({progressText})";
 
-            yield return LoadSceneAdditive(i);
+            yield return LoadSceneIndex(i);
             DataFilesHandler.WriteMapRotation(CurrMapRotation);
         }
 
@@ -111,9 +113,17 @@ public sealed class MapRotationHandler
         CurrentlyLoading = false;
     }
 
-    private IEnumerator LoadSceneAdditive(int index)
+    private IEnumerator LoadSceneIndex(int index)
     {
-        SceneManager.LoadSceneAsync(MapBaker.Instance.GetLevel(index), LoadSceneMode.Additive);
+        if (SceneManager.loadedSceneCount < _maxLoadedScenes)
+        {
+            SceneManager.LoadSceneAsync(MapBaker.Instance.GetLevel(index), LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(MapBaker.Instance.GetLevel(index), LoadSceneMode.Single);
+        }
+
         Scene scene = SceneManager.GetSceneByPath(MapBaker.Instance.ScenePaths[index]);
 
         while (!scene.isLoaded)
