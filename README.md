@@ -118,9 +118,9 @@ With the `.cfg` file, you can:
 
 <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/loading-maps-screen.png?raw=true">
 
-#### Biomes in HUD with Tenderfoot difficulty:
+#### Biomes in HUD during a Custom Run:
 
-<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/biomes-hud-english-tenderfoot.png?raw=true">
+<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/biomes-hud-english-customrun.png?raw=true">
 
 #### Examples of language support:
 
