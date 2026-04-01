@@ -1,0 +1,467 @@
+{
+    "BuildVersion": "1.54.c",
+    "MapBiomes": [
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Thorny",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "TumblerHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "SkyJungle",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Redwood Clearcut Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Redwoods Default Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "CacusHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "SkyJungle",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "CacusHell",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "BlueBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Redwoods Default Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "NoVariant",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "GeyserHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Redwoods Default Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "GeyserHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "JellyHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "CactusForest",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Bombs",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Lava",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Redwoods Default Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "NoVariant",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "CactusForest",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Deep Water variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "ScorpionsHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Redwoods Default Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Lava",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Redwoods Default Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "CactusForest",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Bombs",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Lava",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "NoVariant",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "- Cave Mania Variant",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Lava",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "TornadoHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ]
+    ]
+}
