@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2] - 2026-04-01
+
+### Changed
+
+- Update data file to support PEAK 1.60.c.
+
 ## [1.0.1] - 2026-03-30
 
 ### Changed
