@@ -2,9 +2,7 @@
 
 **Find out what biomes are currently in rotation and select a map to play with an in-game UI.** 
 
-PeakAMap searches through each map to find out what biomes they have and lets players pick from them. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new patch happens, then PeakAMap will automatically create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
-
-#### **Currently Supports:** PEAK 1.60.c
+PeakAMap searches through each map to find out what biomes they have and lets players pick from them. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new maps are patched in, then PeakAMap will automatically create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
 
 ## Features
 
@@ -19,16 +17,16 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/biomes-hud-english.png?raw=true" width=800px>
 
 	> TIP: This feature is optional.
-  If you don't like having extra text on your screen, this feature can be disabled in your `.cfg` file. Instructions on how to do this is further below in the "Configuration" section.
+  If you don't like having extra text on your screen, this feature can be disabled in your `.cfg` file. Instructions on how to do so is further below in the "Configuration" section.
 
 - **Map Rotation Info is Preloaded for the Suppported PEAK Version**
-  - Currently supporting PEAK 1.60.c
+  - Currently supporting map rotation from PEAK 1.60.c
   
 - **Support for Future Map Patches** 
   - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
-  - If PeakAMap doesn't have data for the current patch or there are issues with the file containing this data, the map rotation info will be loaded, searched, and saved at the game's start
+  - If PeakAMap doesn't have data for the current map rotation or there are issues with the file containing this data, the map rotation info will be loaded, searched, and saved at the game's start
       > TIP: This feature is optional.
-      If you're only interested in selecting a map without the biome info or if preloading takes too long. This feature can be disabled in your `.cfg` file. Instructions on how to do this is further below in the "Configuration" section.
+      If you're only interested in selecting a map without the biome info or if preloading takes too long. This feature can be disabled in your `.cfg` file. Instructions on how to do so is further below in the "Configuration" section.
 
 - **Partial Language Support** 
   - Some phrases/words that were already supported in game will be supported in PeakAMap.

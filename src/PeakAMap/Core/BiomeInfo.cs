@@ -23,7 +23,9 @@ public class BiomeInfo
 
     public bool OpenTomb;
 
-    public string[] TextId => BiomeTextIds[(Biome.BiomeType)BiomeTypeInt];
+    public Biome.BiomeType biomeType => (Biome.BiomeType)BiomeTypeInt;
+
+    public string[] TextId => BiomeTextIds[biomeType];
 
     public BiomeInfo(Biome biome, Component? variant = null, bool? openTomb = false)
     {

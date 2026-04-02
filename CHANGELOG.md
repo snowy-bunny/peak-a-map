@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3] - 2026-04-01
+
+### Added
+
+- Prevent preloading from happening when a new PEAK patch doesn't change the map rotation.
+
 ## [1.0.2] - 2026-04-01
 
 ### Changed
