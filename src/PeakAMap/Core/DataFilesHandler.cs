@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zorro.Core;
 
@@ -12,6 +15,8 @@ public static class DataFilesHandler
     private static string s_fileName = $"map_rotation-{s_currVersion}.json";
 
     private static string s_currMapRotationPath = s_dataDir + s_fileName;
+
+    private static string[] s_dataFiles = Directory.GetFiles(s_dataDir, "*.json").OrderByDescending(s => s).ToArray();
 
     public static string GetFileName(string version)
     {
@@ -29,29 +34,66 @@ public static class DataFilesHandler
         string filename = GetFileName(version);
         string path = GetPath(version);
         string json = "";
-        MapRotation? mapRotation = null;
 
-        try
+        if (s_dataFiles.Contains(path))
         {
-            json = File.ReadAllText(path);
-        }
-        catch
-        {
-            Plugin.Log.LogWarning($"Cannot find file at {path}. Not able to load map rotation data.");
-            return mapRotation;
-        }
-
-        try
-        {
-            mapRotation = MapRotation.FromJson(json);
-        }
-        catch
-        {
-            Plugin.Log.LogWarning($"Issue with data in {filename}. Not able to load map rotation data.");
-            return mapRotation;
+            try
+            {
+                json = File.ReadAllText(path);
+                return MapRotation.FromJson(json);
+            }
+            catch { }
         }
 
-        return mapRotation;
+        Plugin.Log.LogWarning($"Cannot get data from {path}. Trying to get data from other files.");
+        return FallbackMapRotationFiles();
+    }
+
+    private static MapRotation? FallbackMapRotationFiles()
+    {
+        string json = "";
+        string path = "";
+
+        for (int i = 0; i < s_dataFiles.Length; i++)
+        {
+            try
+            {
+                path = s_dataFiles[i];
+                json = File.ReadAllText(path);
+                MapRotation mapRotation = MapRotation.FromJson(json);
+                if ((MapBaker.Instance.selectedBiomes.Count == MapBaker.Instance.ScenePaths.Length)
+                    && IsIdenticalToSelectedMaps(mapRotation))
+                {
+                    Plugin.Log.LogWarning("Found data with identical biomes to use as current map rotation data. " +
+                        "Biome information details may contain inaccuracies as a result.");
+                    return mapRotation;
+                }
+            }
+            catch { }
+        }
+
+        Plugin.Log.LogWarning($"Cannot find data from other files. Not able to load map rotation data.");
+        return null;
+    }
+
+    private static bool IsIdenticalToSelectedMaps(MapRotation mapRotation)
+    {
+        List<MapBaker.BiomeResult> biomeResults = mapRotation.biomeResults;
+
+        if (biomeResults.Count != MapBaker.Instance.selectedBiomes.Count)
+        {
+            return false;
+        }
+
+        for (int j = 0; j < biomeResults.Count; j++)
+        {
+            if (!MapBaker.Instance.selectedBiomes[j].IsIdenticalTo(biomeResults[j]))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     internal static void WriteMapRotation(MapRotation data)

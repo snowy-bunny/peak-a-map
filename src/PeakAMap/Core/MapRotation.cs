@@ -27,6 +27,29 @@ public class MapRotation
         MapBiomes = new List<BiomeInfo>[MapBaker.Instance.ScenePaths.Length];
     }
 
+
+    public List<MapBaker.BiomeResult> biomeResults
+    {
+        get
+        {
+            List<MapBaker.BiomeResult> biomeResults = new();
+            List<Biome.BiomeType> biomeTypes = new();
+            foreach (List<BiomeInfo> map in MapBiomes)
+            {
+                biomeTypes.Clear();
+
+                foreach (BiomeInfo biomeInfo in map)
+                {
+                    biomeTypes.Add(biomeInfo.biomeType);
+                }
+
+                biomeResults.Add(new MapBaker.BiomeResult(biomeTypes));
+            }
+
+            return biomeResults;
+        }
+    }
+
     public static MapRotation FromJson(string json)
     {
         MapRotation mapRotation = JsonUtility.FromJson<MapRotation>(json);
