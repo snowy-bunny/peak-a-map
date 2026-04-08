@@ -414,7 +414,31 @@ internal sealed class MapsBoardPrefab
         return loadDropdown;
     }
 
-    private static void CreateMapOptions(GameObject parent)
+    private GameObject CreateConfigOptions(GameObject parent)
+    {
+        GameObject options = new GameObject("ConfigOptions", typeof(VerticalLayoutGroup));
+        options.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+
+        options.GetComponent<VerticalLayoutGroup>().spacing = -25;
+
+        RectTransform rect = options.GetRectTransform();
+        rect.sizeDelta = new Vector2(325, 0);
+        rect.anchoredPosition = new Vector2(-100, 0);
+        rect.pivot = new Vector2(1, 0.5f);
+        rect.anchorMin = new Vector2(1, 0);
+        rect.anchorMax = new Vector2(1, 1);
+
+        return options;
+    }
+
+    private void CreateConfigEntryToggleUI(GameObject parent)
+    {
+        GameObject config;
+        foreach (KeyValuePair<string, ConfigEntry<bool>> item in ConfigEntryToggle.entryConfigs)
+        {
+            config = ConfigEntryToggle.Instantiate(item.Key, parent.transform);
+        }
+    }
     {
         for (int i = 0; i < MapRotationHandler.Instance.CurrMapRotation.Length; i++)
         {

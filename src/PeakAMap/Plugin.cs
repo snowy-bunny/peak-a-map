@@ -17,10 +17,12 @@ public partial class Plugin : BaseUnityPlugin
     private void Awake()
     {
         Log = Logger;
+
         LoadedInfo = Info;
 
-        Log.LogInfo($"Plugin {Name} is loaded!");
-        _harmony.PatchAll(Assembly.GetExecutingAssembly());
+        Config.SaveOnConfigSet = true;
         Core.UserConfig.Initialize(Config);
+
+        _harmony.PatchAll(Assembly.GetExecutingAssembly());
     }
 }
