@@ -5,7 +5,7 @@ using TMPro;
 
 namespace PeakAMap.Utilities;
 [HarmonyPatch]
-public static class boardingPassUI
+public static class BoardingPassUI
 {
     private static bool s_initialized;
 
@@ -13,7 +13,7 @@ public static class boardingPassUI
 
     public static Image Panel { get; private set; }
 
-    public static GameObject InnerboardingPass { get; private set; }
+    public static GameObject InnerBoardingPass { get; private set; }
 
     public static Button StartGameButton { get; private set; }
 
@@ -33,7 +33,7 @@ public static class boardingPassUI
 
         Panel = boardingPass.playerName.transform.parent.GetImage();
 
-        InnerboardingPass = Panel.transform.parent.gameObject;
+        InnerBoardingPass = Panel.transform.parent.gameObject;
 
         StartGameButton = boardingPass.startGameButton;
 
@@ -45,7 +45,7 @@ public static class boardingPassUI
 
         PlayerName = boardingPass.playerName;
 
-        Pivot = InnerboardingPass.GetComponent<RectTransform>().pivot;
+        Pivot = InnerBoardingPass.GetComponent<RectTransform>().pivot;
 
         BlueTop = Panel.gameObject.QueryChildren("BlueTop");
 

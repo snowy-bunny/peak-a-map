@@ -55,7 +55,7 @@ public static class MapsBoardUI
 
     public static Color MainColor = boardingPassUI.Panel.gameObject.GetColor();
 
-    public static Color SubtitleColor = boardingPassUI.PlayerName.color;
+    public static Color SubtitleColor = BoardingPassUI.PlayerName.color;
 
     public static Color BoardColor = new Color(0.20f, 0.22f, 0.32f);        // Dark Grey
 
@@ -63,21 +63,21 @@ public static class MapsBoardUI
 
     public static Color ScreenColor = boardingPassUI.boardingPass.startGameButton.image.color;
 
-    public static Color Cell1Color = boardingPassUI.BlueTop.GetColor();
+    public static Color Cell1Color = BoardingPassUI.BlueTop.GetColor();
 
     public static Color Cell2Color = ScreenColor;
 
-    public static TMP_FontAsset MainFont = boardingPassUI.PlayerName.font;
+    public static TMP_FontAsset MainFont = BoardingPassUI.PlayerName.font;
 
     public static TMP_FontAsset AirlineFont = PassportUI.PassportText.font;
 
-    public static Sprite MainSprite = boardingPassUI.Panel.sprite;
+    public static Sprite MainSprite = BoardingPassUI.Panel.sprite;
 
-    public static Sprite RoughSprite = boardingPassUI.IncrementAscentButton.image.sprite;
+    public static Sprite RoughSprite = BoardingPassUI.IncrementAscentButton.image.sprite;
 
-    public static Material MainMaterial = boardingPassUI.Panel.material;
+    public static Material MainMaterial = BoardingPassUI.Panel.material;
 
-    public static Type MainImageType = boardingPassUI.Panel.type;
+    public static Type MainImageType = BoardingPassUI.Panel.type;
 
     public static GameObject Dropdown = MainMenuUI.Dropdown;
 }
