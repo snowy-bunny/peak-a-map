@@ -427,31 +427,25 @@ internal sealed class MapsBoardPrefab
         }
     }
 
-    private static void UpdateMapsListFromCount(GameObject mapsList)
+    internal void DynamicMapsList(GameObject mapsList, GameObject scrollView)
     {
         RectTransform rect = mapsList.GetRectTransform();
+        GridLayoutGroup layout = mapsList.GetComponent<GridLayoutGroup>();
+        ScrollRect scroll = scrollView.GetComponent<ScrollRect>();
+
+        MapOption.UpdateAllBgColors(mapsList);
 
         // Adjusting height of MapsList to number of rows.
-        int numRows = mapsList.transform.childCount / MapsBoardUI.VisibleCols;
-        float totalHeight = (MapsBoardUI.CellHeight * numRows) + MapsBoardUI.roundedCornersAdjustment;
-        rect.sizeDelta = new Vector2(rect.sizeDelta.x, totalHeight);
-
-        if (numRows <= MapsBoardUI.VisibleRows)
+        int numRows = (int)System.Math.Ceiling((decimal)mapsList.transform.childCount / VisibleCols);
+        if (numRows <= VisibleRows)
         {
             return;
         }
 
-        // Adjusting background color of each cell in case of overflow.
-        int colParity;
-        int rowParity;
-        Image img;
-        for (int i = 0; i < mapsList.transform.childCount; i++)
-        {
-            colParity = (i / numRows) % 2;
-            rowParity = (i - (numRows * colParity)) % 2;
+        float totalHeight = (CellHeight * numRows) + roundedCornersAdjustment;
 
-            img = mapsList.transform.GetChild(i).GetImage();
-            img.color = (colParity == rowParity) ? MapsBoardUI.Cell1Color : MapsBoardUI.Cell2Color;
-        }
+        rect.sizeDelta = new Vector2(rect.sizeDelta.x, totalHeight);
+        layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        scroll.content = rect;
     }
 }
