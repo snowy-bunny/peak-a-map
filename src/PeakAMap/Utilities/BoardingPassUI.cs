@@ -39,15 +39,16 @@ public static class boardingPassUI
 
         IncrementAscentButton = boardingPass.incrementAscentButton;
 
-        Plane = Panel.gameObject.QueryChildren("Plane")
-            ?? new GameObject("PlaneFallback", typeof(RectTransform), typeof(Image));
+        Title = Panel.gameObject.QueryChildren("BOARDING PASS");
+
+        Plane = Panel.gameObject.QueryChildren("Plane");
 
         PlayerName = boardingPass.playerName;
 
         Pivot = InnerboardingPass.GetComponent<RectTransform>().pivot;
 
-        BlueTop = Panel.gameObject.QueryChildren("BlueTop")
-            ?? new GameObject("BlueTopFallback", typeof(Image));
+        BlueTop = Panel.gameObject.QueryChildren("BlueTop");
+
     }
 
     [HarmonyPatch(typeof(AirportCheckInKiosk), nameof(AirportCheckInKiosk.Start))]

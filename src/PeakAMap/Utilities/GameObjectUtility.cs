@@ -27,22 +27,16 @@ public static class GameObjectUtility
         return gameObject.GetComponent<TextMeshProUGUI>();
     }
 
-    public static GameObject? QueryChildren(this GameObject gameObject, string[] queries)
+    public static GameObject QueryChildren(this GameObject gameObject, string[] queries)
     {
-        GameObject? results = gameObject.transform.QueryChildren(queries)?.gameObject;
-
-        return results;
+        return gameObject.transform.QueryChildren(queries).gameObject;
     }
 
-    public static GameObject? QueryChildren(this GameObject gameObject, string queryOrPath)
+    public static GameObject QueryChildren(this GameObject gameObject, string queryOrPath)
     {
-        GameObject? results = gameObject.transform.QueryChildren(queryOrPath)?.gameObject;
-
-        return results;
+        return gameObject.transform.QueryChildren(queryOrPath).gameObject;
     }
-
-    public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
-    {
+return
         if (gameObject.TryGetComponent(out T retrieved))
         {
             return retrieved;

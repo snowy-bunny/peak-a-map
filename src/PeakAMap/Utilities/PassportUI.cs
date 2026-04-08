@@ -16,9 +16,8 @@ public static class PassportUI
         passportManager = PassportManager.instance;
 
         PassportText = passportManager.uiObject
-            .QueryChildren("Canvas/Panel/Panel/BG/Portrait")?
-            .GetComponentInChildren<TextMeshProUGUI>()
-            ?? new TextMeshProUGUI();
+            .QueryChildren("Canvas/Panel/Panel/BG/Portrait")
+            .GetComponentInChildren<TextMeshProUGUI>();
     }
 
     [HarmonyPatch(typeof(AirportCheckInKiosk), nameof(AirportCheckInKiosk.Start))]

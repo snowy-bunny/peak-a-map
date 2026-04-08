@@ -21,18 +21,18 @@ public static class TransformUtility
         return transform.GetComponent<TextMeshProUGUI>();
     }
 
-    public static Transform? FindFromChildren(string path)
+    public static Transform FindFromChildren(string path)
     {
         string[] queries = path.Split("/");
 
         Transform start = GameObject.Find(queries[0]).transform;
 
-        Transform? results = start.QueryChildren(queries[1..]);
+        Transform results = start.QueryChildren(queries[1..]);
 
         return results;
     }
 
-    public static Transform? QueryChildren(this Transform current, string[] queries)
+    public static Transform QueryChildren(this Transform current, string[] queries)
     {
         if (queries.Length == 0)
         {
@@ -63,11 +63,11 @@ public static class TransformUtility
         return null;
     }
 
-    public static Transform? QueryChildren(this Transform current, string queryOrPath)
+    public static Transform QueryChildren(this Transform current, string queryOrPath)
     {
         string[] queries = queryOrPath.Split("/");
 
-        Transform? results = current.QueryChildren(queries);
+        Transform results = current.QueryChildren(queries);
 
         return results;
     }

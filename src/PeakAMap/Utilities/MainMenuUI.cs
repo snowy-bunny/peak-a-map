@@ -23,17 +23,15 @@ public static class MainMenuUI
 
         GameObject MainMenuReference = new GameObject("MainMenuReference");
 
-        Dropdown = Object.Instantiate(mainMenu.QueryChildren("FirstTimeSetupPage/SettingParent/ENUM DROPDOWN/Dropdown")
-            ?? new GameObject("DropdownObjectFallback", typeof(TMP_Dropdown)));
+        Dropdown = Object.Instantiate(mainMenu
+            .QueryChildren("FirstTimeSetupPage/SettingParent/ENUM DROPDOWN/Dropdown"));
         Dropdown.transform.SetParent(MainMenuReference.transform, worldPositionStays: false);
 
         SettingsBackButton = Object.Instantiate(mainMenu
-            .QueryChildren("SettingsPage/SettingsPageShared/UI_MainMenuButton_LeaveGame (2)")
-            ?? new GameObject("BackButtonFallback", typeof(Button)));
+            .QueryChildren("SettingsPage/SettingsPageShared/UI_MainMenuButton_LeaveGame (2)"));
         SettingsBackButton.transform.SetParent(MainMenuReference.transform, worldPositionStays: false);
 
-        VersionTMPro = Object.Instantiate(innerMainMenu.QueryChildren("Version")?.GetTMPro())
-            ?? new GameObject("VersionFallback", typeof(TextMeshProUGUI)).GetTMPro();
+        VersionTMPro = Object.Instantiate(innerMainMenu.QueryChildren("Version").GetTMPro());
         VersionTMPro.transform.SetParent(MainMenuReference.transform, worldPositionStays: false);
 
         Object.DontDestroyOnLoad(MainMenuReference);
