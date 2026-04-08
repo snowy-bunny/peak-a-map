@@ -25,6 +25,8 @@ public class MapBiomes : MonoBehaviour
         }
     }
 
+    public static string Separator = " | ";
+
     public static List<LocalizedText> GetBiomesLocalizedText(List<BiomeInfo>? biomesInfo)
     {
         if (biomesInfo == null)
@@ -78,10 +80,10 @@ public class MapBiomes : MonoBehaviour
         {
             string[] biomesTextArr = BiomesTextIds.Select(ids => LocalizedText.GetText(ids.index)).ToArray();
 
-            TMPro.text = string.Join(MapOption.Separator, biomesTextArr);
+            TMPro.text = string.Join(Separator, biomesTextArr);
             if (string.IsNullOrEmpty(TMPro.text))
             {
-                TMPro.text = MapOptionPrefab.Instance.BiomesTextPlaceholder;
+                TMPro.text = MapOptionPrefab.Instance.InfoTextPlaceholder;
             }
         }
         catch (Exception e)

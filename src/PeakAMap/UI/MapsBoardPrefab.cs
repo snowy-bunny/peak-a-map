@@ -19,7 +19,7 @@ internal sealed class MapsBoardPrefab
 
     public static MapsBoard Instance => _instance;
 
-    public GameObject gameObject { get; set; }
+    public GameObject Line { get; set; }
 
     private void Initialize()
     {
@@ -46,6 +46,8 @@ internal sealed class MapsBoardPrefab
         scroll.content = mapsList.GetRectTransform();
 
         UpdateMapsListFromCount(mapsList);
+        MapOptionPrefab.Instance.Line.transform
+            .SetParentAndScale(gameObject.transform);
     }
 
     private GameObject SetBoard()
