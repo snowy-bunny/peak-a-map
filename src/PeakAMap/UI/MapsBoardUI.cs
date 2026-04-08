@@ -57,6 +57,8 @@ public static class MapsBoardUI
 
     public static Color SubtitleColor = BoardingPassUI.PlayerName.color;
 
+    public static Color DarkFontColor = BoardingPassUI.AscentDescription.color;
+
     public static Color BoardColor = new Color(0.20f, 0.22f, 0.32f);        // Dark Grey
 
     public static Color MapCodeColor = new Color(0.731f, 1, 0.998f, 1);     // Light Cyan
@@ -80,4 +82,20 @@ public static class MapsBoardUI
     public static Type MainImageType = BoardingPassUI.Panel.type;
 
     public static GameObject Dropdown = MainMenuUI.Dropdown;
+
+    public static SFX_Instance buttonClickSFX = BoardingPassUI.CustomOptionItemTogglePrefab.sfxClick;
+
+    public static SFX_Instance buttonHoverSFX = BoardingPassUI.CustomOptionItemTogglePrefab.sfxHover;
+
+    public static int InfoFontSize => 20;
+
+    public static int InfoFontSizeMin => 18;
+
+    public static int InfoFontSizeMax => 24;
+
+    public static int LineSimpleHeight => 24;
+
+    public static int LineDetailsHeight => 28;
+
+    public static float OpenButtonYPosition = BoardingPassUI.Title.GetRectTransform().anchoredPosition.y;
 }
