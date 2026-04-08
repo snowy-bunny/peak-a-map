@@ -69,7 +69,14 @@ public class BiomeInfo
     {
         string[] cleanArr = variant.Split(' ', '-');
         string cleanSub;
-        for (int i = 1; i < cleanArr.Length; i++)
+
+        // Checks if variant has already been cleaned
+        if (cleanArr.Length <= 1)
+        {
+            return variant;
+        }
+
+        for (int i = 0; i < cleanArr.Length; i++)
         {
             cleanSub = cleanArr[i];
 
@@ -94,6 +101,10 @@ public class BiomeInfo
         if (variant.Equals("NoVariant"))
         {
             return "Default";
+        }
+        if (variant.Equals("CacusHell"))
+        {
+            return "CactusHell";
         }
         return variant;
     }

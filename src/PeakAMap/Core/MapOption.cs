@@ -140,7 +140,7 @@ public class MapOption : MonoBehaviour
         TextMeshProUGUI variantTmp = info.transform
             .GetChild((int)InfoType.VariantInfo).gameObject
             .GetTMPro();
-        string variantText = BiomeInfo.CleanVariant(biomesInfo[biomeIndex].Variant, biomesInfo[biomeIndex].biomeType);
+        string variantText = biomesInfo[biomeIndex].Variant;
         variantTmp.text = variantText;
     }
 
