@@ -7,13 +7,15 @@ using static PeakAMap.UI.MapsBoardUI;
 
 namespace PeakAMap.UI;
 
-internal sealed class MapsBoard
+internal sealed class MapsBoardPrefab
 {
-    private static readonly MapsBoard _instance = new();
+    private static readonly MapsBoardPrefab _instance = new();
 
-    private MapsBoard() { Initialize(); }
+    private MapsBoardPrefab() { Initialize(); }
 
-    static MapsBoard() { }
+    static MapsBoardPrefab() { }
+
+    public static MapsBoardPrefab Instance => _instance;
 
     public static MapsBoard Instance => _instance;
 
