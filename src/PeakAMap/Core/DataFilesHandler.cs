@@ -45,7 +45,7 @@ public static class DataFilesHandler
             catch { }
         }
 
-        Plugin.Log.LogWarning($"Cannot get data from {path}. Trying to get data from other files.");
+        Plugin.Log.LogWarning($"Cannot get data from {filename}. Trying to get data from other files.");
         return FallbackMapRotationFiles();
     }
 
@@ -64,7 +64,7 @@ public static class DataFilesHandler
                 if ((MapBaker.Instance.selectedBiomes.Count == MapBaker.Instance.ScenePaths.Length)
                     && IsIdenticalToSelectedMaps(mapRotation))
                 {
-                    Plugin.Log.LogWarning("Found data with identical biomes to use as current map rotation data. " +
+                    Plugin.Log.LogWarning($"Found file {Path.GetFileName(path)} with identical biomes to use as current map rotation data. " +
                         "Biome information details may contain inaccuracies as a result.");
                     return mapRotation;
                 }
@@ -72,7 +72,7 @@ public static class DataFilesHandler
             catch { }
         }
 
-        Plugin.Log.LogWarning($"Cannot find data from other files. Not able to load map rotation data.");
+        Plugin.Log.LogError($"Cannot find data from other files. Not able to load map rotation data.");
         return null;
     }
 
