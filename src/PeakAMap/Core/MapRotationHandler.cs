@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -144,7 +143,7 @@ public sealed class MapRotationHandler
     private void AddLoadingScreenExtraUI(out Button? button)
     {
         button = null;
-        UI.LoadingMapsScreenUI.Instance.Instantiate(null, out GameObject? description, out GameObject? quitButton);
+        UI.LoadingMapsScreenPrefab.Instance.Instantiate(null, out GameObject? description, out GameObject? quitButton);
         if (quitButton == null)
         {
             Plugin.Log.LogError("Quit Button object was not found. Will not be able to exit out of loading screen.");

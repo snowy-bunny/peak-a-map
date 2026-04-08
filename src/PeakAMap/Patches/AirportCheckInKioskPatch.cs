@@ -8,6 +8,6 @@ internal class AirportCheckInKioskPatch
     [HarmonyPostfix]
     private static void InstantiateMapsBoard()
     {
-        Core.MapsBoardHandler.Instantiate();
+        Core.MapsBoard.Instantiate();
     }
 }

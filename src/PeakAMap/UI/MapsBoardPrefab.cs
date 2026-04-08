@@ -1,28 +1,32 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using BepInEx.Configuration;
 using PeakAMap.Core;
 using PeakAMap.Utilities;
 using static PeakAMap.UI.MapsBoardUI;
+using System.Collections.Generic;
 
 namespace PeakAMap.UI;
 
-internal sealed class MapsBoard
+internal sealed class MapsBoardPrefab
 {
-    private static readonly MapsBoard _instance = new();
+    private static readonly MapsBoardPrefab _instance = new();
 
-    private MapsBoard() { Initialize(); }
+    private MapsBoardPrefab() { Initialize(); }
 
-    static MapsBoard() { }
+    static MapsBoardPrefab() { }
 
-    public static MapsBoard Instance => _instance;
+    public static MapsBoardPrefab Instance => _instance;
 
-    public GameObject gameObject { get; set; }
+    public GameObject gameObject { get; private set; }
+
+    public GameObject Line { get; set; }
 
     private void Initialize()
     {
         gameObject = SetBoard();
-        Object.DontDestroyOnLoad(gameObject);
+        DontDestroy.Add(gameObject);
 
         GameObject screen = CreateScreen(gameObject);
         GameObject header = CreateHeader(screen);
@@ -32,36 +36,31 @@ internal sealed class MapsBoard
         GameObject selectedMap = CreateSelectedMap(header);
         GameObject modeSelection = CreateModeSelection(header);
         GameObject logo = CreateLogo(title);
+        GameObject options = CreateConfigOptions(header);
+        CreateBorder(gameObject);
         CreateTitleText(title);
         CreatePlane(logo);
         CreateSelectedMapLabel(selectedMap);
         CreateSelectedMapCode(selectedMap);
         CreateModeLabel(modeSelection);
         CreateDropdown(modeSelection);
-        CreateMapOptions(mapsList);
+        CreateCloseButton(header);
+        CreateConfigEntryToggleUI(options);
 
-        ScrollRect scroll = scrollView.GetComponent<ScrollRect>();
-        scroll.content = mapsList.GetRectTransform();
-
-        UpdateMapsListFromCount(mapsList);
+        MapOptionPrefab.Instance.Line.transform
+            .SetParentAndScale(gameObject.transform);
     }
 
     private GameObject SetBoard()
     {
-        GameObject board = new("MapsBoard", typeof(RectTransform), typeof(Image));
+        GameObject board = new("MapsBoard", typeof(RectTransform));
 
         RectTransform rect = board.GetRectTransform();
-        rect.sizeDelta = new Vector2(BoardWidth, BoardHeight);
-        rect.anchorMin = new Vector2(0.5f, 0.5f);
-        rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.pivot = BoardPivot;
-
-        Image img = board.GetImage();
-        img.color = BoardColor;
-        img.sprite = MainSprite;
-        img.material = MainMaterial;
-        img.type = MainImageType;
-        img.pixelsPerUnitMultiplier = 3;
+        RectTransform rectRef = BoardingPassUI.CustomOptions.gameObject.GetRectTransform();
+        rect.sizeDelta = rectRef.sizeDelta;
+        rect.anchorMin = rectRef.anchorMin;
+        rect.anchorMax = rectRef.anchorMax;
+        rect.pivot = rectRef.pivot;
 
         return board;
     }
@@ -69,35 +68,41 @@ internal sealed class MapsBoard
     private GameObject CreateScreen(GameObject parent)
     {
         GameObject screen = new("Screen", typeof(RectTransform), typeof(Image), typeof(Mask));
-
-        screen.transform.SetParent(parent.transform, worldPositionStays: false);
+        screen.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = screen.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(ScreenWidth, ScreenHeight);
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
         rect.pivot = new Vector2(0.5f, 0.5f);
 
         Image img = screen.GetImage();
+        Image imgRef = BoardingPassUI.CustomWindowPanel.gameObject.GetImage();
         img.color = ScreenColor;
         img.sprite = MainSprite;
         img.material = MainMaterial;
         img.type = MainImageType;
-        img.pixelsPerUnitMultiplier = 4;
+        img.pixelsPerUnitMultiplier = imgRef.pixelsPerUnitMultiplier;
 
         return screen;
+    }
+
+    private GameObject CreateBorder(GameObject parent)
+    {
+        GameObject border = Object.Instantiate(BoardingPassUI.Border);
+        border.name = "Border";
+        border.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+
+        return border;
     }
 
     private GameObject CreateHeader(GameObject parent)
     {
         GameObject header = new("Header", typeof(RectTransform));
-
-        header.transform.SetParent(parent.transform, worldPositionStays: false);
+        header.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = header.GetRectTransform();
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchoredPosition = new Vector2(0, -roundedCornersAdjustment);
         rect.sizeDelta = new Vector2(0, HeaderHeight - roundedCornersAdjustment);
         rect.anchorMin = new Vector2(0, 1);
@@ -107,15 +112,31 @@ internal sealed class MapsBoard
         return header;
     }
 
+    private GameObject CreateCloseButton(GameObject parent)
+    {
+        Button button = Object.Instantiate(BoardingPassUI.CloseButtonCustom);
+        button.onClick.RemoveAllListeners();
+        button.transform.SetParentAndScale(parent.transform);
+
+        GameObject close = button.gameObject;
+        close.name = "CloseButton";
+
+        RectTransform rect = close.GetRectTransform();
+        rect.anchoredPosition = new Vector2(-30, 0);
+        rect.anchorMin = new Vector2(1, 0.5f);
+        rect.anchorMax = new Vector2(1, 0.5f);
+        rect.pivot = new Vector2(1, 0.5f);
+
+        return close;
+    }
+
     private GameObject CreateScrollView(GameObject parent)
     {
         GameObject view = new("ScrollView", typeof(RectTransform), typeof(ScrollRect), typeof(Mask), typeof(Image));
-
-        view.transform.SetParent(parent.transform, worldPositionStays: false);
+        view.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = view.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(ScreenWidth, ScreenHeight - HeaderHeight);
         rect.anchorMin = new Vector2(0.5f, 0);
         rect.anchorMax = new Vector2(0.5f, 0);
@@ -125,7 +146,7 @@ internal sealed class MapsBoard
         scroll.horizontal = false;
         scroll.vertical = true;
         scroll.movementType = ScrollRect.MovementType.Clamped;
-        scroll.scrollSensitivity = 3;
+        scroll.scrollSensitivity = 7;
 
         Image img = view.GetImage();
         img.color = ScreenColor;
@@ -138,12 +159,10 @@ internal sealed class MapsBoard
     private GameObject CreateMapsList(GameObject parent)
     {
         GameObject list = new("MapsList", typeof(RectTransform), typeof(GridLayoutGroup), typeof(CanvasGroup));
-
-        list.transform.SetParent(parent.transform, worldPositionStays: false);
+        list.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = list.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(MapsListWidth, MapsListHeight);
         rect.anchorMin = new Vector2(0, 1);
         rect.anchorMax = new Vector2(1, 1);
@@ -153,8 +172,8 @@ internal sealed class MapsBoard
         layout.childAlignment = TextAnchor.UpperLeft;
         layout.startCorner = GridLayoutGroup.Corner.UpperLeft;
         layout.startAxis = GridLayoutGroup.Axis.Vertical;
-        layout.cellSize = new Vector2(CellWidth, CellHeight); 
-        layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        layout.cellSize = new Vector2(CellWidth, CellHeight);
+        layout.constraint = GridLayoutGroup.Constraint.Flexible;
         layout.constraintCount = VisibleCols;
         layout.padding.left = roundedCornersAdjustment;
         layout.padding.right = roundedCornersAdjustment;
@@ -166,12 +185,10 @@ internal sealed class MapsBoard
     private GameObject CreateTitle(GameObject parent)
     {
         GameObject title = new("Title", typeof(RectTransform), typeof(HorizontalLayoutGroup));
-
-        title.transform.SetParent(parent.transform, worldPositionStays: false);
+        title.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = title.GetRectTransform();
         rect.anchoredPosition = new Vector2(40, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(0, 0.5f);
@@ -191,15 +208,13 @@ internal sealed class MapsBoard
     private GameObject CreateSelectedMap(GameObject parent)
     {
         GameObject selection = new("SelectedMap", typeof(RectTransform), typeof(HorizontalLayoutGroup));
-
-        selection.transform.SetParent(parent.transform, worldPositionStays: false);
+        selection.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selection.GetRectTransform();
-        rect.anchoredPosition = new Vector2(-460, 0);
-        rect.localScale = new Vector3(1, 1, 1);
-        rect.anchorMin = new Vector2(1, 0);
-        rect.anchorMax = new Vector2(1, 1);
-        rect.pivot = new Vector2(1, 0.5f);
+        rect.anchoredPosition = new Vector2(0, 0);
+        rect.anchorMin = new Vector2(0.5f, 0);
+        rect.anchorMax = new Vector2(0.5f, 1);
+        rect.pivot = new Vector2(0.5f, 0.5f);
 
         HorizontalLayoutGroup layout = selection.GetComponent<HorizontalLayoutGroup>();
         layout.spacing = 15;
@@ -215,12 +230,10 @@ internal sealed class MapsBoard
     private GameObject CreateSelectedMapLabel(GameObject parent)
     {
         GameObject selectedMapLabel = new("MAP:", typeof(RectTransform), typeof(TextMeshProUGUI));
-
-        selectedMapLabel.transform.SetParent(parent.transform, worldPositionStays: false);
+        selectedMapLabel.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selectedMapLabel.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(0, 1);
         rect.pivot = new Vector2(1, 0.5f);
@@ -228,7 +241,7 @@ internal sealed class MapsBoard
         TextMeshProUGUI txt = selectedMapLabel.GetTMPro();
         txt.text = "MAP:";
         txt.font = MainFont;
-        txt.color = MainColor;
+        txt.color = MainFontColor;
         txt.fontSize = 36;
         txt.horizontalAlignment = HorizontalAlignmentOptions.Right;
         txt.verticalAlignment = VerticalAlignmentOptions.Geometry;
@@ -241,12 +254,10 @@ internal sealed class MapsBoard
     private GameObject CreateSelectedMapCode(GameObject parent)
     {
         GameObject selectedMapCode = new("SelectedMapCode", typeof(RectTransform), typeof(TextMeshProUGUI));
-
-        selectedMapCode.transform.SetParent(parent.transform, worldPositionStays: false);
+        selectedMapCode.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selectedMapCode.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(225, 50);
         rect.anchorMin = new Vector2(1, 0);
         rect.anchorMax = new Vector2(1, 1);
@@ -268,13 +279,11 @@ internal sealed class MapsBoard
     private GameObject CreateModeSelection(GameObject parent)
     {
         GameObject selection = new("ModeSelection", typeof(RectTransform), typeof(HorizontalLayoutGroup));
-
-        selection.transform.SetParent(parent.transform, worldPositionStays: false);
+        selection.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selection.GetRectTransform();
-        rect.anchoredPosition = new Vector2(-30, 0);
+        rect.anchoredPosition = new Vector2(-450, 0);
         rect.sizeDelta = new Vector2(320, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(1, 0.5f);
@@ -293,19 +302,17 @@ internal sealed class MapsBoard
     private GameObject CreateLogo(GameObject parent)
     {
         GameObject logo = new("Logo", typeof(RectTransform), typeof(Image));
-
-        logo.transform.SetParent(parent.transform, worldPositionStays: false);
+        logo.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = logo.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(40, 40);
         rect.anchorMin = new Vector2(0, 0.5f);
         rect.anchorMax = new Vector2(0, 0.5f);
         rect.pivot = new Vector2(0, 0.5f);
 
         Image img = logo.GetImage();
-        img.color = MainColor;
+        img.color = MainFontColor;
         img.sprite = MainSprite;
         img.material = MainMaterial;
         img.type = MainImageType;
@@ -315,8 +322,7 @@ internal sealed class MapsBoard
     }
     private GameObject CreateTitleText(GameObject parent)
     {
-        GameObject titleText = new("CURRENT MAP ROTATION", typeof(RectTransform), typeof(TextMeshProUGUI));
-
+        GameObject titleText = new("MAP ROTATION", typeof(RectTransform), typeof(TextMeshProUGUI));
         titleText.transform.SetParent(parent.transform, worldPositionStays: false);
 
         RectTransform rect = titleText.GetRectTransform();
@@ -327,9 +333,9 @@ internal sealed class MapsBoard
         rect.pivot = new Vector2(0, 0.5f);
 
         TextMeshProUGUI txt = titleText.GetTMPro();
-        txt.text = "<b>CURRENT MAP ROTATION</b>";
+        txt.text = "<b>MAP ROTATION</b>";
         txt.font = AirlineFont;
-        txt.color = MainColor;
+        txt.color = MainFontColor;
         txt.fontStyle = FontStyles.Italic;
         txt.fontWeight = FontWeight.Black;
         txt.fontSize = 30;
@@ -345,13 +351,11 @@ internal sealed class MapsBoard
 
     private GameObject CreatePlane(GameObject parent)
     {
-        GameObject plane = Object.Instantiate(boardingPassUI.Plane).gameObject;
-
-        plane.transform.SetParent(parent.transform, worldPositionStays: false);
+        GameObject plane = Object.Instantiate(BoardingPassUI.Plane).gameObject;
+        plane.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = plane.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(35, 35);
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -366,12 +370,10 @@ internal sealed class MapsBoard
     private GameObject CreateModeLabel(GameObject parent)
     {
         GameObject modeLabel = new("MODE:", typeof(RectTransform), typeof(TextMeshProUGUI));
-
-        modeLabel.transform.SetParent(parent.transform, worldPositionStays: false);
+        modeLabel.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = modeLabel.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(1, 0.5f);
@@ -379,7 +381,7 @@ internal sealed class MapsBoard
         TextMeshProUGUI txt = modeLabel.GetTMPro();
         txt.text = "MODE:";
         txt.font = MainFont;
-        txt.color = MainColor;
+        txt.color = MainFontColor;
         txt.fontSize = 36;
         txt.horizontalAlignment = HorizontalAlignmentOptions.Right;
         txt.verticalAlignment = VerticalAlignmentOptions.Geometry;
@@ -392,14 +394,14 @@ internal sealed class MapsBoard
     private GameObject CreateDropdown(GameObject parent)
     {
         GameObject loadDropdown = Object.Instantiate(MapsBoardUI.Dropdown);
+        loadDropdown.StripCloneInName();
         Object.Destroy(MainMenuUI.Dropdown);
 
-        loadDropdown.transform.SetParent(parent.transform, worldPositionStays: false);
+        loadDropdown.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = loadDropdown.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
-        rect.sizeDelta = new Vector2(225, 50);
+        rect.sizeDelta = new Vector2(165, 50);
         rect.anchorMin = new Vector2(1, 0.5f);
         rect.anchorMax = new Vector2(1, 0.5f);
         rect.pivot = new Vector2(1, 0.5f);
@@ -407,44 +409,70 @@ internal sealed class MapsBoard
         TMP_Dropdown dropdown = loadDropdown.GetComponent<TMP_Dropdown>();
         dropdown.onValueChanged.RemoveAllListeners();
         dropdown.ClearOptions();
-        dropdown.AddOptions([.. LoadModeUtil.Names]);
+        foreach (string label in LoadModeUtil.Names)
+        {
+            dropdown.AddOptions([label.ToUpper()]);
+        }
 
         return loadDropdown;
     }
 
-    private static void CreateMapOptions(GameObject parent)
+    private GameObject CreateConfigOptions(GameObject parent)
     {
-        for (int i = 0; i < MapRotationHandler.Instance.CurrMapRotation.Length; i++)
+        GameObject options = new GameObject("ConfigOptions", typeof(VerticalLayoutGroup));
+        options.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+
+        options.GetComponent<VerticalLayoutGroup>().spacing = -25;
+
+        RectTransform rect = options.GetRectTransform();
+        rect.sizeDelta = new Vector2(325, 0);
+        rect.anchoredPosition = new Vector2(-100, 0);
+        rect.pivot = new Vector2(1, 0.5f);
+        rect.anchorMin = new Vector2(1, 0);
+        rect.anchorMax = new Vector2(1, 1);
+
+        return options;
+    }
+
+    private void CreateConfigEntryToggleUI(GameObject parent)
+    {
+        GameObject config;
+        foreach (KeyValuePair<string, ConfigEntry<bool>> item in ConfigEntryToggle.entryConfigs)
+        {
+            config = ConfigEntryToggle.Instantiate(item.Key, parent.transform);
+        }
+    }
+
+    internal void CreateMapOptions(GameObject parent)
+    {
+        int total = System.Math.Max(
+            MapRotationHandler.Instance.CurrMapRotation.Length,
+            MapBaker.Instance.ScenePaths.Length);
+        for (int i = 0; i < total; i++)
         {
             MapOption.Instantiate(i, parent.transform);
         }
     }
 
-    private static void UpdateMapsListFromCount(GameObject mapsList)
+    internal void DynamicMapsList(GameObject mapsList, GameObject scrollView)
     {
         RectTransform rect = mapsList.GetRectTransform();
+        GridLayoutGroup layout = mapsList.GetComponent<GridLayoutGroup>();
+        ScrollRect scroll = scrollView.GetComponent<ScrollRect>();
+
+        MapOption.UpdateAllBgColors(mapsList);
 
         // Adjusting height of MapsList to number of rows.
-        int numRows = mapsList.transform.childCount / MapsBoardUI.VisibleCols;
-        float totalHeight = (MapsBoardUI.CellHeight * numRows) + MapsBoardUI.roundedCornersAdjustment;
-        rect.sizeDelta = new Vector2(rect.sizeDelta.x, totalHeight);
-
-        if (numRows <= MapsBoardUI.VisibleRows)
+        int numRows = (int)System.Math.Ceiling((decimal)mapsList.transform.childCount / VisibleCols);
+        if (numRows <= VisibleRows)
         {
             return;
         }
 
-        // Adjusting background color of each cell in case of overflow.
-        int colParity;
-        int rowParity;
-        Image img;
-        for (int i = 0; i < mapsList.transform.childCount; i++)
-        {
-            colParity = (i / numRows) % 2;
-            rowParity = (i - (numRows * colParity)) % 2;
+        float totalHeight = (CellHeight * numRows) + roundedCornersAdjustment;
 
-            img = mapsList.transform.GetChild(i).GetImage();
-            img.color = (colParity == rowParity) ? MapsBoardUI.Cell1Color : MapsBoardUI.Cell2Color;
-        }
+        rect.sizeDelta = new Vector2(rect.sizeDelta.x, totalHeight);
+        layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        scroll.content = rect;
     }
 }
