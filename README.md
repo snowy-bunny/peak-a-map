@@ -1,6 +1,6 @@
 # PeakAMap
 
-**Find out what biomes are currently in rotation and select a map to play with an in-game UI.** 
+**Find out details such as the biomes, biome variants, and whether the Tomb is open for the current map rotation. Then select a map to play with an in-game UI.** 
 
 PeakAMap searches through each map to find out what biomes they have and lets players pick from them. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new maps are patched in, then PeakAMap will automatically create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
 
@@ -10,17 +10,21 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
 	- Biomes of each map are displayed.
 	- Choose to play a custom map or to play the daily map.
   
-  <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-dropdown-english.png?raw=true" width=800px>
+   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/boarding-pass-map-00-button.png?raw=true" width=800px>
+  
+   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-custom-detailed-english.png?raw=true" width=800px>
 
 - **Biomes are Displayed in the HUD During Your Run**
   
   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/biomes-hud-english.png?raw=true" width=800px>
 
 	> TIP: This feature is optional.
-  If you don't like having extra text on your screen, this feature can be disabled in your `.cfg` file. Instructions on how to do so is further below in the "Configuration" section.
+   If you don't like having extra text on your screen, this feature can be disabled with the in-game toggle.
+  
+   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-display-biomes-in-run.png?raw=true" width=500px>
 
 - **Map Rotation Info is Preloaded for the Suppported PEAK Version**
-  - Currently supporting map rotation from PEAK 1.60.c
+  - Currently supporting map rotation from PEAK 1.60.d
   
 - **Support for Future Map Patches** 
   - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
@@ -32,12 +36,12 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
   - Some phrases/words that were already supported in game will be supported in PeakAMap.
 
 - **Biome Variant and Open Tomb Info**
-  - Extra information on current maps are stored in the `.\BepInEx\plugins\PeakAMap\data\` folder in `map_rotation-<version>.json`. *(Note: The `<version>` refers to the **PEAK** game version, not PeakAMap mod version).*
-    > NOTE: Only available inside of file. Not shown in game.
-    Currently, you can only view the **biome variant** and **open tomb** information in the **PeakAMap's data file**. _There are plans to add a way to display these in game, but it is not supported at the moment._
-  
-    > CAUTION: DO NOT modify these files.
-    Doing so may cause inaccurate biome information to display in the PeakAMap UI or preloading to start due to failure to read the file.
+  - Extra information, i.e., biome variant and whether the Tomb is open for current maps, are displayed with the map select UI.
+
+	> TIP: This feature is optional.
+   If you don't like having extra text on your screen, this feature can be disabled with the in-game toggle.
+   
+      <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-more-details.png?raw=true" width=500px>
 
 ## Installation
 
@@ -98,6 +102,7 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
 With the `.cfg` file, you can:
 - Disable or enable biomes from showing in the HUD.
 - Disable or enable map rotation info from loading at the game's start when data files are missing.
+- Disable or enable biome variant and open tomb information from showing in the map select UI.
 
 ### Instructions: 
 
@@ -111,6 +116,12 @@ With the `.cfg` file, you can:
 - If your game is still running. **Quit** and **relaunch** to apply settings.
 
 ## Extra Screenshots:
+
+#### Boarding pass and map select UIs with daily map selected and "More Details" disabled:
+
+<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/boarding-pass-daily-map-button.png?raw=true">
+
+<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-daily-simple-english.png?raw=true">
 
 #### Loading screen when data is missing:
 
