@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] - 2026-04-08
+
+### Changed
+
+- Update Thunderstore description.
+
 ## [1.1.0] - 2026-04-08
 
 ### Added
