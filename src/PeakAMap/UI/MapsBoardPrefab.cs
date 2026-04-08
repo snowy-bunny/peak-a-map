@@ -71,12 +71,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateScreen(GameObject parent)
     {
         GameObject screen = new("Screen", typeof(RectTransform), typeof(Image), typeof(Mask));
-
-        screen.transform.SetParent(parent.transform, worldPositionStays: false);
+        screen.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = screen.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(ScreenWidth, ScreenHeight);
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -95,11 +93,9 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateHeader(GameObject parent)
     {
         GameObject header = new("Header", typeof(RectTransform));
-
-        header.transform.SetParent(parent.transform, worldPositionStays: false);
+        header.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = header.GetRectTransform();
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchoredPosition = new Vector2(0, -roundedCornersAdjustment);
         rect.sizeDelta = new Vector2(0, HeaderHeight - roundedCornersAdjustment);
         rect.anchorMin = new Vector2(0, 1);
@@ -112,12 +108,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateScrollView(GameObject parent)
     {
         GameObject view = new("ScrollView", typeof(RectTransform), typeof(ScrollRect), typeof(Mask), typeof(Image));
-
-        view.transform.SetParent(parent.transform, worldPositionStays: false);
+        view.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = view.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(ScreenWidth, ScreenHeight - HeaderHeight);
         rect.anchorMin = new Vector2(0.5f, 0);
         rect.anchorMax = new Vector2(0.5f, 0);
@@ -140,12 +134,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateMapsList(GameObject parent)
     {
         GameObject list = new("MapsList", typeof(RectTransform), typeof(GridLayoutGroup), typeof(CanvasGroup));
-
-        list.transform.SetParent(parent.transform, worldPositionStays: false);
+        list.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = list.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(MapsListWidth, MapsListHeight);
         rect.anchorMin = new Vector2(0, 1);
         rect.anchorMax = new Vector2(1, 1);
@@ -168,12 +160,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateTitle(GameObject parent)
     {
         GameObject title = new("Title", typeof(RectTransform), typeof(HorizontalLayoutGroup));
-
-        title.transform.SetParent(parent.transform, worldPositionStays: false);
+        title.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = title.GetRectTransform();
         rect.anchoredPosition = new Vector2(40, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(0, 0.5f);
@@ -193,8 +183,7 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateSelectedMap(GameObject parent)
     {
         GameObject selection = new("SelectedMap", typeof(RectTransform), typeof(HorizontalLayoutGroup));
-
-        selection.transform.SetParent(parent.transform, worldPositionStays: false);
+        selection.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selection.GetRectTransform();
         rect.anchoredPosition = new Vector2(-460, 0);
@@ -217,12 +206,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateSelectedMapLabel(GameObject parent)
     {
         GameObject selectedMapLabel = new("MAP:", typeof(RectTransform), typeof(TextMeshProUGUI));
-
-        selectedMapLabel.transform.SetParent(parent.transform, worldPositionStays: false);
+        selectedMapLabel.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selectedMapLabel.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(0, 1);
         rect.pivot = new Vector2(1, 0.5f);
@@ -243,12 +230,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateSelectedMapCode(GameObject parent)
     {
         GameObject selectedMapCode = new("SelectedMapCode", typeof(RectTransform), typeof(TextMeshProUGUI));
-
-        selectedMapCode.transform.SetParent(parent.transform, worldPositionStays: false);
+        selectedMapCode.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selectedMapCode.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(225, 50);
         rect.anchorMin = new Vector2(1, 0);
         rect.anchorMax = new Vector2(1, 1);
@@ -270,13 +255,11 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateModeSelection(GameObject parent)
     {
         GameObject selection = new("ModeSelection", typeof(RectTransform), typeof(HorizontalLayoutGroup));
-
-        selection.transform.SetParent(parent.transform, worldPositionStays: false);
+        selection.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = selection.GetRectTransform();
         rect.anchoredPosition = new Vector2(-30, 0);
         rect.sizeDelta = new Vector2(320, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(1, 0.5f);
@@ -295,12 +278,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateLogo(GameObject parent)
     {
         GameObject logo = new("Logo", typeof(RectTransform), typeof(Image));
-
-        logo.transform.SetParent(parent.transform, worldPositionStays: false);
+        logo.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = logo.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(40, 40);
         rect.anchorMin = new Vector2(0, 0.5f);
         rect.anchorMax = new Vector2(0, 0.5f);
@@ -349,11 +330,10 @@ internal sealed class MapsBoardPrefab
     {
         GameObject plane = Object.Instantiate(boardingPassUI.Plane).gameObject;
 
-        plane.transform.SetParent(parent.transform, worldPositionStays: false);
+        plane.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = plane.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.sizeDelta = new Vector2(35, 35);
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -368,12 +348,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateModeLabel(GameObject parent)
     {
         GameObject modeLabel = new("MODE:", typeof(RectTransform), typeof(TextMeshProUGUI));
-
-        modeLabel.transform.SetParent(parent.transform, worldPositionStays: false);
+        modeLabel.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = modeLabel.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.localScale = new Vector3(1, 1, 1);
         rect.anchorMin = new Vector2(0, 0);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(1, 0.5f);
@@ -394,9 +372,10 @@ internal sealed class MapsBoardPrefab
     private GameObject CreateDropdown(GameObject parent)
     {
         GameObject loadDropdown = Object.Instantiate(MapsBoardUI.Dropdown);
+        loadDropdown.StripCloneInName();
         Object.Destroy(MainMenuUI.Dropdown);
 
-        loadDropdown.transform.SetParent(parent.transform, worldPositionStays: false);
+        loadDropdown.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = loadDropdown.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);

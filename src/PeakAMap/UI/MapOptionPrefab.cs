@@ -76,10 +76,7 @@ public sealed class MapOptionPrefab
         txt.horizontalAlignment = HorizontalAlignmentOptions.Center;
         txt.verticalAlignment = VerticalAlignmentOptions.Geometry;
 
-        mapCodeObject.transform.SetParent(parent.transform, worldPositionStays: false);
-        rect.localScale = new Vector3(1, 1, 1);
-
-        return parent;
+        mapCode.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
     }
 
     private GameObject CreateBiomes(GameObject parent)

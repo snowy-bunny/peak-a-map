@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,40 +37,54 @@ public static class GameObjectUtility
     {
         return gameObject.transform.QueryChildren(queryOrPath).gameObject;
     }
-return
+
+    public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
+    {
         if (gameObject.TryGetComponent(out T retrieved))
         {
             return retrieved;
         }
         return gameObject.AddComponent<T>();
     }
-
-    public static GameObject PasteComponent<T>(this GameObject gameObject, T component)
+    
+    public static Component GetOrAddComponent(this GameObject gameObject, Type type)
     {
-        Type type = typeof(T);
-
-        T gameObjectComponent = gameObject.GetComponent<T>();
-        if (gameObjectComponent == null)
+        if (gameObject.TryGetComponent(type, out Component retrieved))
         {
-            gameObject.AddComponent(type);
-            gameObjectComponent = gameObject.GetComponent<T>();
+            return retrieved;
         }
+        return gameObject.AddComponent(type);
+    }
+
+    public static GameObject PasteComponent<T>(this GameObject gameObject, T component, params string[] exclude) where T : Component
+    {
+        Type type = component.GetType();
+        Component gameObjectComponent = gameObject.GetOrAddComponent(type);
 
         PropertyInfo[] propInfo = type.GetProperties();
         foreach (PropertyInfo prop in propInfo)
         {
-            if (prop.CanRead && prop.CanWrite)
+            if (prop.CanRead && prop.CanWrite && !exclude.Contains(prop.Name))
             {
-                prop.SetValue(gameObjectComponent, prop.GetValue(component));
+                try
+                {
+                    prop.SetValue(gameObjectComponent, prop.GetValue(component));
+                }
+                catch { }
             }
         }
 
-        FieldInfo[] fieldInfo = type.GetFields();
-        foreach (FieldInfo field in fieldInfo)
-        {
-            field.SetValue(gameObjectComponent, field.GetValue(component));
-        }
-
         return gameObject;
+    }
+
+    public static string StripCloneInName(this GameObject gameObject)
+    {
+        string cloneConcat = "(Clone)";
+        if (gameObject.name.EndsWith(cloneConcat))
+        {
+            int startIndex = gameObject.name.Length - cloneConcat.Length;
+            gameObject.name = gameObject.name.Remove(startIndex);
+        }
+        return gameObject.name;
     }
 }

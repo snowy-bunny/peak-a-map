@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 
 namespace PeakAMap.Utilities;
+
 public static class TransformUtility
 {
     public static Color GetColor(this Transform transform)
@@ -70,5 +71,16 @@ public static class TransformUtility
         Transform results = current.QueryChildren(queries);
 
         return results;
+    }
+
+    public static Transform SetParentAndScale(this Transform child, Transform parent, bool worldPositionStays = true)
+    {
+        child.SetParent(parent, worldPositionStays: worldPositionStays);
+        if (child.gameObject.TryGetComponent(out RectTransform rect))
+        {
+            rect.localScale = new Vector3(1, 1, 1);
+        }
+
+        return child;
     }
 }

@@ -49,16 +49,14 @@ public sealed class LoadingMapsScreenPrefab
         }
 
         description = Object.Instantiate(Description);
-        description.transform.SetParent(parent.transform, worldPositionStays: false);
+        description.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
         RectTransform descriptionRect = description.GetRectTransform();
         descriptionRect.anchoredPosition = new Vector2(35, -20);
-        descriptionRect.localScale = new Vector3(1, 1, 1);
 
         quitButton = Object.Instantiate(QuitButton);
-        quitButton.transform.SetParent(parent.transform, worldPositionStays: false);
+        quitButton.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
         RectTransform quitButtonRect = quitButton.GetRectTransform();
         quitButtonRect.anchoredPosition = new Vector2(-30, -25);
-        quitButtonRect.localScale = new Vector3(1, 1, 1);
     }
 
     private GameObject? GetLoadingScreen()
@@ -82,7 +80,7 @@ public sealed class LoadingMapsScreenPrefab
     {
         GameObject description = new GameObject("Description", typeof(RectTransform), typeof(TextMeshProUGUI));
 
-        description.transform.SetParent(parent.transform, worldPositionStays: false);
+        description.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = description.GetRectTransform();
         rect.sizeDelta = new Vector2(500, 100);
@@ -109,7 +107,7 @@ public sealed class LoadingMapsScreenPrefab
     {
         GameObject quitButton = Object.Instantiate(MainMenuUI.SettingsBackButton);
 
-        quitButton.transform.SetParent(parent.transform, worldPositionStays: false);
+        quitButton.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = quitButton.GetRectTransform();
         rect.anchorMin = new Vector2(1, 1);
