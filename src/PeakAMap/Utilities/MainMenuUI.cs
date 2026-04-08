@@ -34,7 +34,7 @@ public static class MainMenuUI
         VersionTMPro = Object.Instantiate(innerMainMenu.QueryChildren("Version").GetTMPro());
         VersionTMPro.transform.SetParent(MainMenuReference.transform, worldPositionStays: false);
 
-        Object.DontDestroyOnLoad(MainMenuReference);
+        UI.DontDestroy.Add(MainMenuReference);
     }
 
     [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.Start))]

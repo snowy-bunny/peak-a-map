@@ -28,7 +28,7 @@ public sealed class LoadingMapsScreenPrefab
         Description = CreateDescription(gameObject);
         QuitButton = CreateQuitButton(gameObject);
 
-        Object.DontDestroyOnLoad(gameObject);
+        DontDestroy.Add(gameObject);
     }
 
     public void Instantiate(GameObject? parent = null)

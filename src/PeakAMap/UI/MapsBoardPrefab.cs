@@ -24,7 +24,7 @@ internal sealed class MapsBoardPrefab
     private void Initialize()
     {
         gameObject = SetBoard();
-        Object.DontDestroyOnLoad(gameObject);
+        DontDestroy.Add(gameObject);
 
         GameObject screen = CreateScreen(gameObject);
         GameObject header = CreateHeader(screen);
