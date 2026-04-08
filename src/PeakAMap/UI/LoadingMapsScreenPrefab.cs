@@ -6,15 +6,15 @@ using PeakAMap.Utilities;
 
 namespace PeakAMap.UI;
 
-public sealed class LoadingMapsScreenUI
+public sealed class LoadingMapsScreenPrefab
 {
-    private static readonly LoadingMapsScreenUI _instance = new();
+    private static readonly LoadingMapsScreenPrefab _instance = new();
 
-    private LoadingMapsScreenUI() { Initialize(); }
+    private LoadingMapsScreenPrefab() { Initialize(); }
 
-    static LoadingMapsScreenUI() { }
+    static LoadingMapsScreenPrefab() { }
 
-    public static LoadingMapsScreenUI Instance => _instance;
+    public static LoadingMapsScreenPrefab Instance => _instance;
 
     public GameObject Description { get; set; }
 
