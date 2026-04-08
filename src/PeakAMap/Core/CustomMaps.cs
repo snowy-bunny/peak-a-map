@@ -15,6 +15,8 @@ public sealed class CustomMaps
 
     public LoadMode loadMode { get; set; }
 
+    public string LoadModeName => LoadModeUtil.GetName(loadMode);
+
     private int _customMapIndex;
 
     public int CustomMapIndex
