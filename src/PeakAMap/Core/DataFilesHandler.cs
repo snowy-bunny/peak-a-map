@@ -18,21 +18,21 @@ public static class DataFilesHandler
 
     private static string[] s_dataFiles = Directory.GetFiles(s_dataDir, "*.json").OrderByDescending(s => s).ToArray();
 
-    public static string GetFileName(string version)
+    public static string GetDataFileName(string version)
     {
         return $"map_rotation-{version}.json";
     }
 
-    public static string GetPath(string version)
+    public static string GetDataPath(string version)
     {
-        return s_dataDir + GetFileName(version);
+        return s_dataDir + GetDataFileName(version);
     }
 
     internal static MapRotation? ParseMapRotation(string? version = null)
     {
         version ??= s_currVersion;
-        string filename = GetFileName(version);
-        string path = GetPath(version);
+        string filename = GetDataFileName(version);
+        string path = GetDataPath(version);
         string json = "";
 
         if (s_dataFiles.Contains(path))
