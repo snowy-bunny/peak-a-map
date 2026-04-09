@@ -170,7 +170,12 @@ public class MapRotation
             Biome.BiomeType.Alpine
                 => biome.GetComponentInChildren(typeof(BiomeVariant)),
 
-            _ => null
+            Biome.BiomeType.Volcano or
+            Biome.BiomeType.Peak 
+                => null,
+
+            _ => biome.GetComponentInChildren(typeof(VariantObject))
+                ?? biome.GetComponentInChildren(typeof(BiomeVariant))
         };
     }
 }
