@@ -27,7 +27,6 @@ public class MapsBoard : MenuWindow
 
     public GameObject[] MapSelectedIndicators { get; private set; }
 
-
     public override bool selectOnOpen => true;
 
     public override bool closeOnPause => true;
@@ -55,10 +54,12 @@ public class MapsBoard : MenuWindow
         boardRect.anchoredPosition = new Vector2(0, 0);
 
         GameObject scrollView = board.QueryChildren("Screen/ScrollView");
-        GameObject mapsList = scrollView.QueryChildren("MapsList");
+        GameObject viewport = scrollView.QueryChildren("Viewport");
+        GameObject scrollbar = scrollView.QueryChildren("Scrollbar");
+        GameObject mapsList = viewport.QueryChildren("MapsList");
 
         MapsBoardPrefab.Instance.CreateMapOptions(mapsList);
-        MapsBoardPrefab.Instance.DynamicMapsList(mapsList, scrollView);
+        MapsBoardPrefab.Instance.DynamicMapsList(mapsList, scrollView, viewport, scrollbar);
 
         Instance = canvas.AddComponent<MapsBoard>();
     }
@@ -71,7 +72,7 @@ public class MapsBoard : MenuWindow
             .QueryChildren("MapsBoard/Screen/Header/SelectedMap/SelectedMapCode")
             .GetComponent<TextMeshProUGUI>();
 
-        MapsList = gameObject.QueryChildren("MapsBoard/Screen/ScrollView/MapsList");
+        MapsList = gameObject.QueryChildren("MapsBoard/Screen/ScrollView/Viewport/MapsList");
 
         Header = gameObject.QueryChildren("MapsBoard/Screen/Header");
 

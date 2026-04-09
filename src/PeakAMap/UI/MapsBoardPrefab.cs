@@ -31,7 +31,9 @@ internal sealed class MapsBoardPrefab
         GameObject screen = CreateScreen(gameObject);
         GameObject header = CreateHeader(screen);
         GameObject scrollView = CreateScrollView(screen);
-        GameObject mapsList = CreateMapsList(scrollView);
+        GameObject viewport = CreateViewport(scrollView);
+        GameObject scrollbar = CreateScrollbar(scrollView);
+        GameObject mapsList = CreateMapsList(viewport);
         GameObject title = CreateTitle(header);
         GameObject selectedMap = CreateSelectedMap(header);
         GameObject modeSelection = CreateModeSelection(header);
@@ -136,17 +138,18 @@ internal sealed class MapsBoardPrefab
         view.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = view.GetRectTransform();
-        rect.anchoredPosition = new Vector2(0, 0);
-        rect.sizeDelta = new Vector2(ScreenWidth, ScreenHeight - HeaderHeight);
-        rect.anchorMin = new Vector2(0.5f, 0);
-        rect.anchorMax = new Vector2(0.5f, 0);
-        rect.pivot = new Vector2(0.5f, 0);
+        rect.anchoredPosition = new Vector2(0, -HeaderHeight);
+        rect.sizeDelta = new Vector2(-roundedCornersAdjustment*2, -HeaderHeight-roundedCornersAdjustment);
+        rect.anchorMin = new Vector2(0, 0);
+        rect.anchorMax = new Vector2(1, 1);
+        rect.pivot = new Vector2(0.5f, 1);
 
-        ScrollRect scroll = view.GetComponent<ScrollRect>();
-        scroll.horizontal = false;
-        scroll.vertical = true;
-        scroll.movementType = ScrollRect.MovementType.Clamped;
-        scroll.scrollSensitivity = 7;
+        ScrollRect scrollRect = view.GetComponent<ScrollRect>();
+        scrollRect.horizontal = false;
+        scrollRect.vertical = true;
+        scrollRect.movementType = ScrollRect.MovementType.Clamped;
+        scrollRect.scrollSensitivity = 7;
+        scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
 
         Image img = view.GetImage();
         img.color = ScreenColor;
@@ -156,14 +159,42 @@ internal sealed class MapsBoardPrefab
         return view;
     }
 
+    private GameObject CreateViewport(GameObject parent)
+    {
+        GameObject list = new("Viewport", typeof(RectTransform));
+        list.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+
+        RectTransform rect = list.GetRectTransform();
+        rect.anchoredPosition = new Vector2(0, 0);
+        rect.pivot = new Vector2(0, 0.5f);
+        rect.anchorMin = new Vector2(0, 0);
+        rect.anchorMax = new Vector2(1, 1);
+        rect.sizeDelta = new Vector2(0, 0);
+
+        return list;
+    }
+
+    private GameObject CreateScrollbar(GameObject parent)
+    {
+        GameObject bar = Object.Instantiate(scrollbar);
+        bar.StripCloneInName();
+        bar.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+
+        RectTransform rect = bar.GetRectTransform();
+        rect.sizeDelta = new Vector2(20, 0);
+
+        return bar;
+    }
+
     private GameObject CreateMapsList(GameObject parent)
     {
         GameObject list = new("MapsList", typeof(RectTransform), typeof(GridLayoutGroup), typeof(CanvasGroup));
         list.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
         RectTransform rect = list.GetRectTransform();
+        RectTransform rectParent = parent.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.sizeDelta = new Vector2(MapsListWidth, MapsListHeight);
+        rect.sizeDelta = new Vector2(0, rectParent.rect.height);
         rect.anchorMin = new Vector2(0, 1);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(0, 1);
@@ -172,12 +203,12 @@ internal sealed class MapsBoardPrefab
         layout.childAlignment = TextAnchor.UpperLeft;
         layout.startCorner = GridLayoutGroup.Corner.UpperLeft;
         layout.startAxis = GridLayoutGroup.Axis.Vertical;
-        layout.cellSize = new Vector2(CellWidth, CellHeight);
         layout.constraint = GridLayoutGroup.Constraint.Flexible;
         layout.constraintCount = VisibleCols;
-        layout.padding.left = roundedCornersAdjustment;
-        layout.padding.right = roundedCornersAdjustment;
-        layout.padding.bottom = roundedCornersAdjustment;
+
+        float cellWidth = rect.rect.width / VisibleCols;
+        float cellHeight = rect.rect.height / VisibleRows;
+        layout.cellSize = new Vector2(cellWidth, cellHeight);
 
         return list;
     }
@@ -393,9 +424,9 @@ internal sealed class MapsBoardPrefab
 
     private GameObject CreateDropdown(GameObject parent)
     {
-        GameObject loadDropdown = Object.Instantiate(MapsBoardUI.Dropdown);
+        GameObject loadDropdown = Object.Instantiate(dropdown);
         loadDropdown.StripCloneInName();
-        Object.Destroy(MainMenuUI.Dropdown);
+        Object.Destroy(dropdown);
 
         loadDropdown.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
@@ -406,12 +437,12 @@ internal sealed class MapsBoardPrefab
         rect.anchorMax = new Vector2(1, 0.5f);
         rect.pivot = new Vector2(1, 0.5f);
 
-        TMP_Dropdown dropdown = loadDropdown.GetComponent<TMP_Dropdown>();
-        dropdown.onValueChanged.RemoveAllListeners();
-        dropdown.ClearOptions();
+        TMP_Dropdown drop = loadDropdown.GetComponent<TMP_Dropdown>();
+        drop.onValueChanged.RemoveAllListeners();
+        drop.ClearOptions();
         foreach (string label in LoadModeUtil.Names)
         {
-            dropdown.AddOptions([label.ToUpper()]);
+            drop.AddOptions([label.ToUpper()]);
         }
 
         return loadDropdown;
@@ -454,25 +485,35 @@ internal sealed class MapsBoardPrefab
         }
     }
 
-    internal void DynamicMapsList(GameObject mapsList, GameObject scrollView)
+    internal void DynamicMapsList(GameObject mapsList, GameObject scrollView, GameObject viewport, GameObject scrollbar)
     {
         RectTransform rect = mapsList.GetRectTransform();
         GridLayoutGroup layout = mapsList.GetComponent<GridLayoutGroup>();
         ScrollRect scroll = scrollView.GetComponent<ScrollRect>();
 
+        RectTransform viewportRect = viewport.GetComponent<RectTransform>();
+
+        scroll.content = rect;
+        scroll.viewport = viewportRect;
+        scroll.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
         MapOption.UpdateAllBgColors(mapsList);
 
-        // Adjusting height of MapsList to number of rows.
         int numRows = (int)System.Math.Ceiling((decimal)mapsList.transform.childCount / VisibleCols);
+
+        // Check for overflow
         if (numRows <= VisibleRows)
         {
             return;
         }
 
-        float totalHeight = (CellHeight * numRows) + roundedCornersAdjustment;
-
+        // Adjust height of MapsList to number of rows.
+        float cellHeight = layout.cellSize.y;
+        float totalHeight = cellHeight * numRows;
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, totalHeight);
         layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        scroll.content = rect;
+        
+        // Adjust width to account for scrollbar
+        float cellWidth = (rect.rect.width - scrollbar.GetRectTransform().sizeDelta.x) / VisibleCols;
+        layout.cellSize = new Vector2(cellWidth, layout.cellSize.y);
     }
 }

@@ -56,27 +56,12 @@ public sealed class MapOptionPrefab
         GameObject mapOption = new GameObject("MapOption", 
             typeof(RectTransform), 
             typeof(Image), 
-            typeof(HorizontalLayoutGroup), 
             typeof(Button),
             typeof(NicksButtonSFX));
 
         Image img = mapOption.GetImage();
         img.type = MainImageType;
         img.material = MainMaterial;
-
-        HorizontalLayoutGroup layout = mapOption.GetComponent<HorizontalLayoutGroup>();
-        layout.padding.left = MapOptionSpacing;
-        layout.padding.right = MapOptionSpacing;
-        layout.padding.top = 10;
-        layout.padding.bottom = 10;
-        layout.spacing = MapOptionSpacing;
-        layout.childForceExpandWidth = false;
-        layout.childForceExpandHeight = true;
-        layout.childControlWidth = false;
-        layout.childControlHeight = true;
-        layout.childScaleWidth = false;
-        layout.childScaleHeight = false;
-        layout.childAlignment = TextAnchor.MiddleLeft;
 
         NicksButtonSFX sfx = mapOption.GetComponent<NicksButtonSFX>();
         NicksButtonSFX sfxRef = BoardingPassUI.CloseButtonCustom.GetComponent<NicksButtonSFX>();
@@ -93,9 +78,10 @@ public sealed class MapOptionPrefab
 
         RectTransform rect = mapCode.GetRectTransform();
         rect.sizeDelta = new Vector2(MapCodeWidth, 0);
-        rect.anchorMin = new Vector2(0.5f, 0);
-        rect.anchorMax = new Vector2(0.5f, 1);
-        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchorMin = new Vector2(0, 0);
+        rect.anchorMax = new Vector2(0, 1);
+        rect.pivot = new Vector2(0, 0.5f);
+        rect.anchoredPosition = new Vector2(0, 0);
 
         TextMeshProUGUI txt = mapCode.GetTMPro();
         txt.text = MapCodePlaceholder;
@@ -137,16 +123,13 @@ public sealed class MapOptionPrefab
 
     private GameObject CreateBiomes(GameObject parent)
     {
-        GameObject mapBiomes = new GameObject("MapBiomes", typeof(RectTransform), typeof(LayoutElement));
-
-        LayoutElement elem = mapBiomes.GetComponent<LayoutElement>();
-        elem.flexibleWidth = 1;
+        GameObject mapBiomes = new GameObject("MapBiomes", typeof(RectTransform));
 
         RectTransform rect = mapBiomes.GetRectTransform();
-        rect.sizeDelta = new Vector2(BiomesWidth, 0);
-        rect.pivot = new Vector2(0, 0.5f);
-        rect.anchorMin = new Vector2(0, 0.5f);
-        rect.anchorMax = new Vector2(0, 0.5f);
+        rect.pivot = new Vector2(1, 0.5f);
+        rect.anchorMin = new Vector2(0, 0);
+        rect.anchorMax = new Vector2(1, 1);
+        rect.sizeDelta = new Vector2(-MapCodeWidth, -20);
 
         HorizontalLayoutGroup layout = mapBiomes.AddComponent<HorizontalLayoutGroup>();
         layout.childAlignment = TextAnchor.MiddleLeft;
@@ -154,6 +137,7 @@ public sealed class MapOptionPrefab
         layout.childControlWidth = true;
         layout.childForceExpandHeight = false;
         layout.childForceExpandWidth = false;
+        layout.padding.right = 25;
 
         mapBiomes.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using PeakAMap.Utilities;
 using static UnityEngine.UI.Image;
@@ -19,21 +20,11 @@ public static class MapsBoardUI
 
     public static int VisibleCols = 2;
 
-    public static float MapsListWidth => ScreenWidth;
-
     public static float MapsListHeight => ScreenHeight - HeaderHeight;
-
-    // Need to adjust for rounded corners from left and right sides.
-    public static float CellWidth => (MapsListWidth - roundedCornersAdjustment * 2) / VisibleCols;
-
-    // Need to adjust for rounded corners from bottom side.
-    public static float CellHeight => (MapsListHeight - roundedCornersAdjustment) / VisibleRows;
 
     public static int MapOptionSpacing => 30;
 
-    public static int MapCodeWidth => 30;
-
-    public static float BiomesWidth => CellWidth - MapCodeWidth - (MapOptionSpacing * 3);
+    public static int MapCodeWidth => 85;
 
     public static Color MainFontColor = BoardingPassUI.Panel.gameObject.GetColor();
 
@@ -63,7 +54,9 @@ public static class MapsBoardUI
 
     public static Type MainImageType = BoardingPassUI.Panel.type;
 
-    public static GameObject Dropdown = MainMenuUI.Dropdown;
+    public static GameObject dropdown = MainMenuUI.Dropdown;
+
+    public static GameObject scrollbar = dropdown.GetComponentInChildren<Scrollbar>(true).gameObject;
 
     public static SFX_Instance buttonClickSFX = BoardingPassUI.CustomOptionItemTogglePrefab.sfxClick;
 

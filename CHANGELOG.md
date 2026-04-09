@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.2] - 2026-04-09
+
+### Added
+
+- Add scrollbar to map select UI when there are more maps than can be visible.
+
 ## [1.1.1] - 2026-04-08
 
 ### Changed
