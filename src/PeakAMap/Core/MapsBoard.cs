@@ -27,7 +27,6 @@ public class MapsBoard : MenuWindow
 
     public GameObject[] MapSelectedIndicators { get; private set; }
 
-
     public override bool selectOnOpen => true;
 
     public override bool closeOnPause => true;
