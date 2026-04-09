@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using PeakAMap.Utilities;
 using static UnityEngine.UI.Image;
@@ -54,6 +55,8 @@ public static class MapsBoardUI
     public static Type MainImageType = BoardingPassUI.Panel.type;
 
     public static GameObject dropdown = MainMenuUI.Dropdown;
+
+    public static GameObject scrollbar = dropdown.GetComponentInChildren<Scrollbar>(true).gameObject;
 
     public static SFX_Instance buttonClickSFX = BoardingPassUI.CustomOptionItemTogglePrefab.sfxClick;
 

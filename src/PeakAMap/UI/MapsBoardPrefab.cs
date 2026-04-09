@@ -31,7 +31,9 @@ internal sealed class MapsBoardPrefab
         GameObject screen = CreateScreen(gameObject);
         GameObject header = CreateHeader(screen);
         GameObject scrollView = CreateScrollView(screen);
-        GameObject mapsList = CreateMapsList(scrollView);
+        GameObject viewport = CreateViewport(scrollView);
+        GameObject scrollbar = CreateScrollbar(scrollView);
+        GameObject mapsList = CreateMapsList(viewport);
         GameObject title = CreateTitle(header);
         GameObject selectedMap = CreateSelectedMap(header);
         GameObject modeSelection = CreateModeSelection(header);
@@ -147,6 +149,7 @@ internal sealed class MapsBoardPrefab
         scrollRect.vertical = true;
         scrollRect.movementType = ScrollRect.MovementType.Clamped;
         scrollRect.scrollSensitivity = 7;
+        scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
 
         Image img = view.GetImage();
         img.color = ScreenColor;
@@ -154,6 +157,33 @@ internal sealed class MapsBoardPrefab
         img.type = MainImageType;
 
         return view;
+    }
+
+    private GameObject CreateViewport(GameObject parent)
+    {
+        GameObject list = new("Viewport", typeof(RectTransform));
+        list.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+
+        RectTransform rect = list.GetRectTransform();
+        rect.anchoredPosition = new Vector2(0, 0);
+        rect.pivot = new Vector2(0, 0.5f);
+        rect.anchorMin = new Vector2(0, 0);
+        rect.anchorMax = new Vector2(1, 1);
+        rect.sizeDelta = new Vector2(0, 0);
+
+        return list;
+    }
+
+    private GameObject CreateScrollbar(GameObject parent)
+    {
+        GameObject bar = Object.Instantiate(scrollbar);
+        bar.StripCloneInName();
+        bar.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+
+        RectTransform rect = bar.GetRectTransform();
+        rect.sizeDelta = new Vector2(20, 0);
+
+        return bar;
     }
 
     private GameObject CreateMapsList(GameObject parent)
@@ -455,12 +485,17 @@ internal sealed class MapsBoardPrefab
         }
     }
 
-    internal void DynamicMapsList(GameObject mapsList, GameObject scrollView)
+    internal void DynamicMapsList(GameObject mapsList, GameObject scrollView, GameObject viewport, GameObject scrollbar)
     {
         RectTransform rect = mapsList.GetRectTransform();
         GridLayoutGroup layout = mapsList.GetComponent<GridLayoutGroup>();
         ScrollRect scroll = scrollView.GetComponent<ScrollRect>();
 
+        RectTransform viewportRect = viewport.GetComponent<RectTransform>();
+
+        scroll.content = rect;
+        scroll.viewport = viewportRect;
+        scroll.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
         MapOption.UpdateAllBgColors(mapsList);
 
         int numRows = (int)System.Math.Ceiling((decimal)mapsList.transform.childCount / VisibleCols);
@@ -476,6 +511,9 @@ internal sealed class MapsBoardPrefab
         float totalHeight = cellHeight * numRows;
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, totalHeight);
         layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        scroll.content = rect;
+        
+        // Adjust width to account for scrollbar
+        float cellWidth = (rect.rect.width - scrollbar.GetRectTransform().sizeDelta.x) / VisibleCols;
+        layout.cellSize = new Vector2(cellWidth, layout.cellSize.y);
     }
 }
