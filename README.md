@@ -2,17 +2,28 @@
 
 **Find out details such as the biomes, biome variants, and whether the Tomb is open for the current map rotation. Then select a map to play with an in-game UI.** 
 
-PeakAMap searches through each map to find out what biomes they have and lets players pick from them. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new maps are patched in, then PeakAMap will automatically create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
+PeakAMap searches for details of each map and lets players pick one to play. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new maps are patched in, then PeakAMap will automatically create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
 
 ## Features
 
 - **Use a UI to Select a Map to Play**
-	- Biomes of each map are displayed.
-	- Choose to play a custom map or to play the daily map.
-  
+
    <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/boarding-pass-map-00-button.png?raw=true" width=800px>
   
    <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-custom-detailed-english.png?raw=true" width=800px>
+
+	- Biomes of each map are displayed.
+	- Choose to play a custom map or to play the daily map.
+	- If you're playing with friends, only the host needs PeakAMap for everyone to play a selected map.
+      > NOTE: The host must be the one to start the game for the selected map to be played.
+
+- **Biome Variant and Open Tomb Info**
+  - Extra information, i.e., biome variant and whether the Tomb is open for current maps, are displayed with the map select UI.
+
+	> TIP: This feature is optional.
+   If you would like to keep this information hidden, this feature can be disabled with the in-game toggle.
+   
+      <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-more-details.png?raw=true" width=500px>
 
 - **Biomes are Displayed in the HUD During Your Run**
   
@@ -34,14 +45,6 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
 
 - **Partial Language Support** 
   - Some phrases/words that were already supported in game will be supported in PeakAMap.
-
-- **Biome Variant and Open Tomb Info**
-  - Extra information, i.e., biome variant and whether the Tomb is open for current maps, are displayed with the map select UI.
-
-	> TIP: This feature is optional.
-   If you don't like having extra text on your screen, this feature can be disabled with the in-game toggle.
-   
-      <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-more-details.png?raw=true" width=500px>
 
 ## Installation
 
@@ -100,15 +103,15 @@ PeakAMap searches through each map to find out what biomes they have and lets pl
 ## Configuration:
 
 With the `.cfg` file, you can:
-- Disable or enable biomes from showing in the HUD.
-- Disable or enable map rotation info from loading at the game's start when data files are missing.
-- Disable or enable biome variant and open tomb information from showing in the map select UI.
+- Enable or disable map rotation info from loading at the game's start when data files are missing.
+- Enable or disable biomes of the map you're playing in from showing in the HUD.
+- Enable or disable biome variant and open tomb information from showing in the map select UI.
 
 ### Instructions: 
 
 - Run PEAK with PeakAMap once and quit game.
 - Edit the `.cfg` file one of two ways:
-  1. If you installed **PeakAMap** with a **mod manager**, you can edit the `.cfg` file with your mod manager app.
+  1. If you installed **PeakAMap** with a **mod manager**, you can edit the config file with your mod manager app.
   2. If you installed **PeakAMap** **manually**:
      - Open Steam > "Library" > "PEAK" > gears/settings icon > "Manage" > "Browse local files" > `BepInEx` > `config`
      - Open `com.github.snowybunny.PeakAMap.cfg`.

@@ -7,7 +7,7 @@ repository = "https://thunderstore.io"
 [package]
 namespace = "snowybunny"
 name = "PeakAMap"
-description = "Find out the biomes, biome variants, and Tomb info of the current maps in rotation. Then select a map to play with an in-game UI."
+description = "Select a map with an in-game UI and see what biomes and its variants are in rotation as well as when the Tomb is open."
 websiteUrl = "https://github.com/snowy-bunny/peak-a-map"
 containsNsfwContent = false
 
