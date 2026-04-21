@@ -36,15 +36,15 @@ public sealed class LoadingMapsScreenPrefab
         Instantiate(parent, out GameObject? _, out GameObject? _);
     }
 
-    public void Instantiate(GameObject? parent, out GameObject? description, out GameObject? quitButton)
+    public void Instantiate(GameObject? parent, out GameObject? description, out GameObject? cancelButton)
     {
         description = null;
-        quitButton = null;
+        cancelButton = null;
         parent ??= GetLoadingScreen();
 
         if (parent == null)
         {
-            Plugin.Log.LogError("No valid parent object was found. Cannot add description and quit button."); 
+            Plugin.Log.LogError("No valid parent object was found. Cannot add description and cancel button."); 
             return;
         }
 
@@ -53,10 +53,10 @@ public sealed class LoadingMapsScreenPrefab
         RectTransform descriptionRect = description.GetRectTransform();
         descriptionRect.anchoredPosition = new Vector2(35, -20);
 
-        quitButton = Object.Instantiate(QuitButton);
-        quitButton.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
-        RectTransform quitButtonRect = quitButton.GetRectTransform();
-        quitButtonRect.anchoredPosition = new Vector2(-30, -25);
+        cancelButton = Object.Instantiate(QuitButton);
+        cancelButton.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+        RectTransform cancelButtonRect = cancelButton.GetRectTransform();
+        cancelButtonRect.anchoredPosition = new Vector2(-30, -25);
     }
 
     private GameObject? GetLoadingScreen()
@@ -105,21 +105,21 @@ public sealed class LoadingMapsScreenPrefab
 
     private GameObject CreateQuitButton(GameObject parent)
     {
-        GameObject quitButton = Object.Instantiate(MainMenuUI.SettingsBackButton);
+        GameObject cancelButton = Object.Instantiate(MainMenuUI.SettingsBackButton);
 
-        quitButton.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
+        cancelButton.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
-        RectTransform rect = quitButton.GetRectTransform();
+        RectTransform rect = cancelButton.GetRectTransform();
         rect.anchorMin = new Vector2(1, 1);
         rect.anchorMax = new Vector2(1, 1);
         rect.pivot = new Vector2(1, 1);
 
-        quitButton.TryGetComponent(out Button button);
+        cancelButton.TryGetComponent(out Button button);
         button.onClick.RemoveAllListeners();
 
-        LocalizedText localTxt = quitButton.GetComponentInChildren<LocalizedText>();
-        localTxt.index = "QUIT";
+        LocalizedText localTxt = cancelButton.GetComponentInChildren<LocalizedText>();
+        localTxt.index = "CANCEL";
 
-        return quitButton;
+        return cancelButton;
     }
 }

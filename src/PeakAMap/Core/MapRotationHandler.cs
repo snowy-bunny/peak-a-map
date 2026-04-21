@@ -54,13 +54,13 @@ public sealed class MapRotationHandler
         }
     }
 
-    private bool _quitIndicator = false;
+    private bool _cancelIndicator = false;
 
     public bool NeedToLoad
     {
         get
         {
-            return UserConfig.LoadMapsOnStart.Value && (!FoundAllMapBiomes) && (!_quitIndicator);
+            return UserConfig.LoadMapsOnStart.Value && (!FoundAllMapBiomes) && (!_cancelIndicator);
         }
     }
 
@@ -88,7 +88,7 @@ public sealed class MapRotationHandler
 
         for (int i = 0; i < _sceneNames.Length; i++)
         {
-            if (_quitIndicator)
+            if (_cancelIndicator)
             {
                 break;
             }
@@ -143,10 +143,10 @@ public sealed class MapRotationHandler
     private void AddLoadingScreenExtraUI(out Button? button)
     {
         button = null;
-        UI.LoadingMapsScreenPrefab.Instance.Instantiate(null, out GameObject? description, out GameObject? quitButton);
-        if (quitButton == null)
+        UI.LoadingMapsScreenPrefab.Instance.Instantiate(null, out GameObject? description, out GameObject? cancelButton);
+        if (cancelButton == null)
         {
-            Plugin.Log.LogError("Quit Button object was not found. Will not be able to exit out of loading screen.");
+            Plugin.Log.LogError("Cancel Button object was not found. Will not be able to exit out of loading screen.");
             return;
         }
         if (description == null)
@@ -154,19 +154,19 @@ public sealed class MapRotationHandler
             return;
         }
 
-        button = quitButton.GetComponent<Button>();
+        button = cancelButton.GetComponent<Button>();
         button.onClick.AddListener(delegate
         {
-            IndicateQuit(description);
+            IndicateCancel(description);
         });
 
-        quitButton.transform.parent.TryGetComponent(out CanvasGroup group);
+        cancelButton.transform.parent.TryGetComponent(out CanvasGroup group);
         group.interactable = true;
     }
 
-    private void IndicateQuit(GameObject description)
+    private void IndicateCancel(GameObject description)
     {
-        _quitIndicator = true;
+        _cancelIndicator = true;
         TextMeshProUGUI tmp = description.GetTMPro();
 
         if (!FoundAllMapBiomes)
@@ -174,6 +174,6 @@ public sealed class MapRotationHandler
             tmp.text = "DIDN'T FINISHED FINDING EVERY MAPS' INFO.\n" + 
                 "SEARCH WILL CONTINUE ON NEXT LAUNCH.\n";
         }
-        tmp.text += "NOW QUITTING...";
+        tmp.text += "NOW CANCELING...";
     }
 }
