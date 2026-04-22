@@ -17,6 +17,15 @@ public class BiomeInfo
         { Biome.BiomeType.Roots, ["ROOTS"] } 
     };
 
+    public static HashSet<Biome.BiomeType> HasVariants = new HashSet<Biome.BiomeType>()
+    {
+        Biome.BiomeType.Shore,
+        Biome.BiomeType.Tropics,
+        Biome.BiomeType.Alpine,
+        Biome.BiomeType.Mesa,
+        Biome.BiomeType.Roots,
+    };
+
     public const int NumInfo = 3;
 
     public int BiomeTypeInt;
