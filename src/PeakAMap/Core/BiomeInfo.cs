@@ -82,7 +82,7 @@ public class BiomeInfo
 
             if (cleanSub.Length > 0)
             {
-                cleanSub = cleanSub.Substring(0, 1).ToUpper() + cleanSub.Substring(1).ToLower();
+                cleanSub = cleanSub.Substring(0, 1).ToUpperInvariant() + cleanSub.Substring(1).ToLowerInvariant();
             }
 
             if (s_rootsIgnoreInVariant.Contains(cleanSub))

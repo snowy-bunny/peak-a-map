@@ -442,7 +442,7 @@ internal sealed class MapsBoardPrefab
         drop.ClearOptions();
         foreach (string label in LoadModeUtil.Names)
         {
-            drop.AddOptions([label.ToUpper()]);
+            drop.AddOptions([label.ToUpperInvariant()]);
         }
 
         return loadDropdown;
