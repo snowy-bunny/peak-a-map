@@ -48,11 +48,20 @@ public class MapBiomes : MonoBehaviour
         List<LocalizedText> biomesTextIds = new();
         for (int i = 0; i < biomeTypes.Count; i++)
         {
-            string[] biomesIds = BiomeInfo.BiomeTextIds[biomeTypes[i]];
-
-            for (int j = 0; j < biomesIds.Length; j++)
+            if (BiomeInfo.BiomeTextIds.TryGetValue(biomeTypes[i], out string[] biomesIds))
             {
-                biomesTextIds.Add(new LocalizedText { index = biomesIds[j] });
+                for (int j = 0; j < biomesIds.Length; j++)
+                {
+                    biomesTextIds.Add(new LocalizedText { index = biomesIds[j] });
+                }
+            }
+            // Fallback for when no localized text found
+            else
+            {
+                biomesTextIds.Add(new LocalizedText 
+                { 
+                    index = Enum.GetName(typeof(Biome.BiomeType), biomeTypes[i]).ToUpperInvariant() 
+                });
             }
         }
 
@@ -78,7 +87,20 @@ public class MapBiomes : MonoBehaviour
     {
         try
         {
-            string[] biomesTextArr = BiomesTextIds.Select(ids => LocalizedText.GetText(ids.index)).ToArray();
+            string[] biomesTextArr = new string[BiomesTextIds.Count];
+                
+            for (int i = 0; i < biomesTextArr.Length; i++)
+            {
+                string id = BiomesTextIds[i].index;
+                if (LocalizedText.mainTable.TryGetValue(id, out var _))
+                {
+                    biomesTextArr[i] = LocalizedText.GetText(id);
+                }
+                else
+                {
+                    biomesTextArr[i] = id;
+                }
+            }              
 
             TMPro.text = string.Join(Separator, biomesTextArr);
             if (string.IsNullOrEmpty(TMPro.text))

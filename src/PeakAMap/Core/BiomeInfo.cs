@@ -25,11 +25,22 @@ public class BiomeInfo
 
     public bool OpenTomb;
 
-    public bool HasVariant => !string.IsNullOrEmpty(Variant);
-
     public Biome.BiomeType biomeType => (Biome.BiomeType)BiomeTypeInt;
 
-    public string[] TextId => BiomeTextIds[biomeType];
+    public string[] TextId
+    {
+        get
+        {
+            if (BiomeTextIds.TryGetValue(biomeType, out string[] value))
+            {
+                return value;
+            }
+            else
+            {
+                return [Enum.GetName(typeof(Biome.BiomeType), biomeType).ToUpperInvariant()];
+            }
+        }
+    }
 
     public BiomeInfo(Biome biome, Component? variant = null, bool? openTomb = false)
     {
