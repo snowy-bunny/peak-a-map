@@ -27,7 +27,6 @@ public class MapRotation
         MapBiomes = new List<BiomeInfo>[MapBaker.Instance.ScenePaths.Length];
     }
 
-
     public List<MapBaker.BiomeResult> biomeResults
     {
         get
