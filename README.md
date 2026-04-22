@@ -2,7 +2,7 @@
 
 **Find out details such as the biomes, biome variants, and whether the Tomb is open for the current map rotation. Then select a map to play with an in-game UI.** 
 
-PeakAMap searches for details of each map and lets players pick one to play. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new maps are patched in, then PeakAMap will automatically create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
+PeakAMap searches for details of each map and lets players pick one to play. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new maps are patched in, then PeakAMap will let the player create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
 
 ## Features
 
