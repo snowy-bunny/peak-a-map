@@ -54,7 +54,7 @@ public sealed class MapRotationHandler
         }
     }
 
-    private bool _cancelIndicator = false;
+    internal bool _cancelIndicator = false;
 
     public bool NeedToLoad
     {
