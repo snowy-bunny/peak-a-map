@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zorro.Core;
+using PeakAMap.Utilities;
 
 namespace PeakAMap.Core;
 public static class DataFilesHandler
@@ -61,8 +62,7 @@ public static class DataFilesHandler
                 path = s_dataFiles[i];
                 json = File.ReadAllText(path);
                 MapRotation mapRotation = MapRotation.FromJson(json);
-                if ((MapBaker.Instance.selectedBiomes.Count == MapBaker.Instance.ScenePaths.Length)
-                    && IsIdenticalToSelectedMaps(mapRotation))
+                if (MapBaker.Instance.ValidSelectedBiomes() && IsIdenticalToSelectedMaps(mapRotation))
                 {
                     Plugin.Log.LogWarning($"Found file {Path.GetFileName(path)} with identical biomes to use as current map rotation data. " +
                         "Biome information details may contain inaccuracies as a result.");
