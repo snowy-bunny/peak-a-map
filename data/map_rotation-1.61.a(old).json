@@ -9,12 +9,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Lava",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 2,
-                "Variant": "Default",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -53,12 +53,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Lava",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 2,
-                "Variant": "Lava",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -97,12 +97,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Bombs",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 6,
-                "Variant": "CactusForest",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -141,12 +141,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Thorny",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 6,
-                "Variant": "TumblerHell",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -185,12 +185,12 @@
             },
             {
                 "BiomeTypeInt": 7,
-                "Variant": "DeepWater",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 6,
-                "Variant": "Default",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -229,12 +229,12 @@
             },
             {
                 "BiomeTypeInt": 7,
-                "Variant": "DeepWoods",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 2,
-                "Variant": "Default",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -273,12 +273,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Bombs",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 2,
-                "Variant": "Spiky",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -317,12 +317,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Thorny",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 6,
-                "Variant": "TornadoHell",
+                "Variant": "",
                 "OpenTomb": true
             },
             {
@@ -361,12 +361,12 @@
             },
             {
                 "BiomeTypeInt": 7,
-                "Variant": "Default",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 6,
-                "Variant": "Default",
+                "Variant": "",
                 "OpenTomb": true
             },
             {
@@ -405,12 +405,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Lava",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 2,
-                "Variant": "Spiky",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
@@ -449,12 +449,12 @@
             },
             {
                 "BiomeTypeInt": 1,
-                "Variant": "Thorny",
+                "Variant": "",
                 "OpenTomb": false
             },
             {
                 "BiomeTypeInt": 6,
-                "Variant": "CactusHell",
+                "Variant": "",
                 "OpenTomb": false
             },
             {

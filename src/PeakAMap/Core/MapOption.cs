@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using PeakAMap.Utilities;
 using static PeakAMap.UI.MapsBoardUI;
 using PeakAMap.UI;
-using BepInEx;
 
 namespace PeakAMap.Core;
 
@@ -82,11 +81,39 @@ public class MapOption : MonoBehaviour
             biomesInfo = null;
         }
 
-        int count = (biomesInfo == null) ? DefaultNumBiomes : biomesInfo.Count;
+        int count;
+        if (biomesInfo != null)
+        {
+            count = biomesInfo.Count;
+        }
+        else if (MapBaker.Instance.ValidSelectedBiomes())
+        {
+            count = MapBaker.Instance.selectedBiomes[mapIndex].biomeTypes.Count;
+        }
+        else
+        {
+            count = DefaultNumBiomes;
+        }
 
         for (int i = 0; i < count; i++)
         {
-            int numText = (biomesInfo == null) ? DefaultNumTextIDs : biomesInfo[i].TextId.Length;
+            int numText;
+            if (biomesInfo != null)
+            {
+                numText = biomesInfo[i].TextId.Length;
+            }
+            else if (MapBaker.Instance.ValidSelectedBiomes() &&
+                BiomeInfo.BiomeTextIds.TryGetValue(MapBaker.Instance.selectedBiomes[mapIndex].biomeTypes[i], 
+                out string[] textIds))
+            {
+                numText = textIds.Length;
+            }
+            else
+            {
+                numText = DefaultNumTextIDs;
+            }
+
+
             for (int j = 0; j < numText; j++)
             {
                 if (i > 0 || j > 0)
@@ -97,51 +124,91 @@ public class MapOption : MonoBehaviour
                     line.SetActive(true);
                 }
 
-                InstantiateInfo(mapBiomes, biomesInfo, i, j);
+                InstantiateInfo(mapBiomes, biomesInfo, mapIndex, i, j);
             }
         }
     }
 
-    private static void InstantiateInfo(GameObject parent, List<BiomeInfo>? biomesInfo, int biomeIndex, int idIndex)
+    private static void InstantiateInfo(GameObject parent, List<BiomeInfo>? biomesInfo, int mapIndex, int biomeIndex, int idIndex)
     {
         GameObject info = Object.Instantiate(MapOptionPrefab.Instance.Info);
         info.StripCloneInName();
         info.transform.SetParentAndScale(parent.transform, worldPositionStays: false);
 
-        if (biomesInfo == null)
+        // All biome info from PeakAMap data file
+        if (biomesInfo != null)
         {
-            info.transform
-                .GetChild((int)InfoType.BiomeNameInfo).gameObject
-                .SetActive(true);
+            SetInfoBiomeText(info, biomesInfo[biomeIndex].biomeType, idIndex);
 
-            info.transform
+            LocalizedText tombLoc = info.transform
                 .GetChild((int)InfoType.OpenTombInfo).gameObject
-                .SetActive(false);
+                .AddComponent<LocalizedText>();
+            TextMeshProUGUI tombTmp = tombLoc.gameObject
+                .GetComponent<TextMeshProUGUI>();
+            tombLoc.index = biomesInfo[biomeIndex].OpenTomb ? "TOMB" : "";
 
-            info.transform
+            TextMeshProUGUI variantTmp = info.transform
                 .GetChild((int)InfoType.VariantInfo).gameObject
-                .SetActive(false);
+                .GetTMPro();
+            string variantText = biomesInfo[biomeIndex].Variant;
+            variantTmp.text = variantText;
 
             return;
         }
 
-        LocalizedText biomeLoc = info.transform
-            .GetChild((int)InfoType.BiomeNameInfo).gameObject
-            .GetOrAddComponent<LocalizedText>();
-        biomeLoc.index = biomesInfo[biomeIndex].TextId[idIndex];
+        // Biome info from MapBaker with missing variant and tomb info
+        else if (MapBaker.Instance.ValidSelectedBiomes())
+        {
+            Biome.BiomeType biomeType = MapBaker.Instance
+                .selectedBiomes[mapIndex]
+                .biomeTypes[biomeIndex];
 
-        LocalizedText tombLoc = info.transform
-            .GetChild((int)InfoType.OpenTombInfo).gameObject
-            .AddComponent<LocalizedText>();
-        TextMeshProUGUI tombTmp = tombLoc.gameObject
-            .GetComponent<TextMeshProUGUI>();
-        tombLoc.index = biomesInfo[biomeIndex].OpenTomb ? "TOMB" : "";
+            SetInfoBiomeText(info, biomeType, idIndex);
 
-        TextMeshProUGUI variantTmp = info.transform
-            .GetChild((int)InfoType.VariantInfo).gameObject
-            .GetTMPro();
-        string variantText = biomesInfo[biomeIndex].Variant;
-        variantTmp.text = variantText;
+            // Indicate missing variant and tomb info for appropriate biomes
+            info.transform
+                .GetChild((int)InfoType.OpenTombInfo).gameObject
+                .SetActive(biomeType == Biome.BiomeType.Mesa);
+            info.transform
+                .GetChild((int)InfoType.VariantInfo).gameObject
+                .SetActive(BiomeInfo.HasVariants.Contains(biomeType));
+
+            return;
+        }
+
+        // Default if missing biome info
+        else
+        {
+            info.transform
+                .GetChild((int)InfoType.BiomeNameInfo).gameObject
+                .SetActive(true);
+            info.transform
+                .GetChild((int)InfoType.OpenTombInfo).gameObject
+                .SetActive(false);
+            info.transform
+                .GetChild((int)InfoType.VariantInfo).gameObject
+                .SetActive(false);
+        }
+    }
+
+    private static void SetInfoBiomeText(GameObject info, Biome.BiomeType biomeType, int idIndex)
+    {
+        if (BiomeInfo.BiomeTextIds.TryGetValue(biomeType, out string[] textIds))
+        {
+            LocalizedText biomeLoc = info.transform
+                .GetChild((int)InfoType.BiomeNameInfo).gameObject
+                .GetOrAddComponent<LocalizedText>();
+
+            biomeLoc.index = textIds[idIndex];
+        }
+        // Fallback for biomes without localized text listed, i.e., biomes not listed in BiomeInfo.BiomeTextIds
+        else
+        {
+            TextMeshProUGUI biomeTmp = info.transform
+                .GetChild((int)InfoType.BiomeNameInfo).gameObject
+                .GetTMPro();
+            biomeTmp.text = System.Enum.GetName(typeof(Biome.BiomeType), biomeType).ToUpperInvariant();
+        }
     }
 
     private void Awake()
@@ -190,7 +257,6 @@ public class MapOption : MonoBehaviour
         bool active = UserConfig.ShowBiomeDetails.Value;
         TextMeshProUGUI tmp;
         int infoIndex;
-        LocalizedText loc;
 
         for (int i = 0; i < TextInfo.Length; i++)
         {
@@ -210,8 +276,14 @@ public class MapOption : MonoBehaviour
 
             if (infoIndex == (int)InfoType.OpenTombInfo)
             {
-                loc = tmp.gameObject.GetComponent<LocalizedText>();
-                tmp.gameObject.SetActive(loc.index == "TOMB");
+                if (tmp.gameObject.TryGetComponent(out LocalizedText loc))
+                {
+                    tmp.gameObject.SetActive(loc.index == "TOMB");
+                }
+                else
+                {
+                    tmp.gameObject.SetActive(true);
+                }
                 continue;
             }
 

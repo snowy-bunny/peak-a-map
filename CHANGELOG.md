@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.2.0] - 2026-04-22
+
+### Added
+
+- Add popup option to choose whether or not to preload missing data instead of automatically preloading.
+- Display biomes in map select UI even when data file is missing info.
+
+### Changed
+
+- Change button text in preloading screen from "QUIT" to "CANCEL".
+
+### Fixed
+
+- Fix data file for PEAK 1.61.a map patch.
+- Fix bug where preloading sometimes didn't find the biome variant.
+
 ## [1.1.3] - 2026-04-13
 
 ### Changed

@@ -17,6 +17,15 @@ public class BiomeInfo
         { Biome.BiomeType.Roots, ["ROOTS"] } 
     };
 
+    public static HashSet<Biome.BiomeType> HasVariants = new HashSet<Biome.BiomeType>()
+    {
+        Biome.BiomeType.Shore,
+        Biome.BiomeType.Tropics,
+        Biome.BiomeType.Alpine,
+        Biome.BiomeType.Mesa,
+        Biome.BiomeType.Roots,
+    };
+
     public const int NumInfo = 3;
 
     public int BiomeTypeInt;
@@ -25,11 +34,22 @@ public class BiomeInfo
 
     public bool OpenTomb;
 
-    public bool HasVariant => !string.IsNullOrEmpty(Variant);
-
     public Biome.BiomeType biomeType => (Biome.BiomeType)BiomeTypeInt;
 
-    public string[] TextId => BiomeTextIds[biomeType];
+    public string[] TextId
+    {
+        get
+        {
+            if (BiomeTextIds.TryGetValue(biomeType, out string[] value))
+            {
+                return value;
+            }
+            else
+            {
+                return [Enum.GetName(typeof(Biome.BiomeType), biomeType).ToUpperInvariant()];
+            }
+        }
+    }
 
     public BiomeInfo(Biome biome, Component? variant = null, bool? openTomb = false)
     {
@@ -82,7 +102,7 @@ public class BiomeInfo
 
             if (cleanSub.Length > 0)
             {
-                cleanSub = cleanSub.Substring(0, 1).ToUpper() + cleanSub.Substring(1).ToLower();
+                cleanSub = cleanSub.Substring(0, 1).ToUpperInvariant() + cleanSub.Substring(1).ToLowerInvariant();
             }
 
             if (s_rootsIgnoreInVariant.Contains(cleanSub))
