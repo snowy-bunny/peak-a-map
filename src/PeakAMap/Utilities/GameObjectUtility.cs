@@ -56,6 +56,23 @@ public static class GameObjectUtility
         return gameObject.AddComponent(type);
     }
 
+    public static Component GetComponentInChildrenActiveSelf<T>(this GameObject gameObject) where T : Component
+    {
+        Component[] children = gameObject.GetComponentsInChildren<T>(true);
+
+        Component child;
+        for (int i = 0; i < children.Length; i++)
+        {
+            child = children[i];
+            if (child.gameObject.activeSelf)
+            {
+                return child;
+            }
+        }
+
+        return null;
+    }
+
     public static GameObject PasteComponent<T>(this GameObject gameObject, T component, params string[] exclude) where T : Component
     {
         Type type = component.GetType();

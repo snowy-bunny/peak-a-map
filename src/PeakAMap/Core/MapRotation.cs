@@ -163,19 +163,19 @@ public class MapRotation
         {
             Biome.BiomeType.Mesa or
             Biome.BiomeType.Roots
-                => biome.GetComponentInChildren(typeof(VariantObject)),
+                => biome.gameObject.GetComponentInChildrenActiveSelf<VariantObject>(),
 
             Biome.BiomeType.Shore or
             Biome.BiomeType.Tropics or
             Biome.BiomeType.Alpine
-                => biome.GetComponentInChildren(typeof(BiomeVariant)),
+                => biome.gameObject.GetComponentInChildrenActiveSelf<BiomeVariant>(),
 
             Biome.BiomeType.Volcano or
-            Biome.BiomeType.Peak 
+            Biome.BiomeType.Peak
                 => null,
 
-            _ => biome.GetComponentInChildren(typeof(VariantObject))
-                ?? biome.GetComponentInChildren(typeof(BiomeVariant))
+            _ => biome.gameObject.GetComponentInChildrenActiveSelf<VariantObject>()
+                ?? biome.gameObject.GetComponentInChildrenActiveSelf<BiomeVariant>()
         };
     }
 }
