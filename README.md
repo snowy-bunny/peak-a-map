@@ -50,9 +50,9 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 
 ### Method 1: Using a Mod Manager
 
-1. Install a **Thunderstore**-compatible mod manager, such as [**r2modman**](https://thunderstore.io/c/peak/p/ebkr/r2modman/) or [**GaleModManager**](https://thunderstore.io/c/peak/p/Kesomannen/GaleModManager/).
-2. Search for **BepInExPack_PEAK** in your mod manager app and install OR go to [BepInEx](https://thunderstore.io/c/peak/p/BepInEx/BepInExPack_PEAK/) in Thunderstore and click "Install with Mod Manager" > "Open" > "Install".
-3. Search for **PeakAMap** in your mod manager app and install OR go to [PeakAMap](https://thunderstore.io/c/peak/p/snowybunny/PeakAMap/) in Thunderstore link and click "Install with Mod Manager" > "Open" > "Install".
+1. Install a **Thunderstore**-compatible mod manager, such as [**r2modman**](https://thunderstore.io/c/peak/p/ebkr/r2modman/), [**GaleModManager**](https://thunderstore.io/c/peak/p/Kesomannen/GaleModManager/), or [**Thunderstore Mod Manager**](https://www.overwolf.com/app/thunderstore-thunderstore_mod_manager).
+2. Search for **BepInExPack_PEAK** in your mod manager app and install OR go to the [BepInEx Thunderstore page](https://thunderstore.io/c/peak/p/BepInEx/BepInExPack_PEAK/) and click "Install with Mod Manager" > "Open" > "Install".
+3. Search for **PeakAMap** in your mod manager app and install OR go to the [PeakAMap Thunderstore page](https://thunderstore.io/c/peak/p/snowybunny/PeakAMap/) and click "Install with Mod Manager" > "Open" > "Install".
 4. Make sure both mods are enabled and run **PEAK** from of your **mod manager** and play.
 
 ### Method 2: Manual Install
@@ -64,7 +64,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
       <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/peak-folder.png?raw=true" width=450px>
 
 1. Installing **BepInEx**:
-   - Go to [BepInEx Thunderstore page](https://thunderstore.io/c/peak/p/BepInEx/BepInExPack_PEAK/) > "Manual Download".
+   - Go to the [BepInEx Thunderstore page](https://thunderstore.io/c/peak/p/BepInEx/BepInExPack_PEAK/) > "Manual Download".
    - This downloads a `.zip` file. Navigate to this (likely in your "Downloads" folder).
    - Extract the `.zip` file. (**DO NOT extract inside of the `PEAK` game folder.**)
 
@@ -83,7 +83,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 
   
 2. Installing **PeakAMap**:
-   - Go to [PeakAMap Thunderstore page](https://thunderstore.io/c/peak/p/snowybunny/PeakAMap/) > "Manual Download".
+   - Go to the [PeakAMap Thunderstore page](https://thunderstore.io/c/peak/p/snowybunny/PeakAMap/) > "Manual Download".
    - This downloads a `.zip` file. Navigate to this (likely in your "Downloads" folder).
    - Extract the `.zip` file.
 
