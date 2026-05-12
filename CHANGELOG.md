@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1] - 2026-05-12
+
+### Changed
+
+- Update data file to support PEAK 1.62.a map patch.
+
 ## [1.2.0] - 2026-04-22
 
 ### Added
