@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.2] - 2026-05-16
+
+### Fixed
+
+- Replace placeholders in Thunderstore page "Details" and "Changelog".
+
 ## [1.2.1] - 2026-05-12
 
 ### Changed
