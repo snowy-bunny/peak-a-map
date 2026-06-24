@@ -1,0 +1,467 @@
+{
+    "BuildVersion": "1.64.a",
+    "MapBiomes": [
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "BlueBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Ivy",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "DynamiteHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "Clearcut",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "CactusForest",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "JellyHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "DeepWoods",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Spiky",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "SkyJungle",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "Default",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "SnakeBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "DeepWoods",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "DynamiteHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "DeepWater",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "BlackSand",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "SnakeBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "DynamiteHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "Default",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Lava",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "JellyHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Thorny",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Pillars",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "DynamiteHell",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "ScorpionsHell",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "CaveMania",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Pillars",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "Default",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "SnakeBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "CaveMania",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Lava",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "SnakeBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 1,
+                "Variant": "Thorny",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "ScorpionsHell",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "BlackSand",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 6,
+                "Variant": "CactusHell",
+                "OpenTomb": true
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ],
+        [
+            {
+                "BiomeTypeInt": 0,
+                "Variant": "RedBeach",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 7,
+                "Variant": "CaveMania",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 2,
+                "Variant": "Default",
+                "OpenTomb": false
+            },
+            {
+                "BiomeTypeInt": 3,
+                "Variant": "",
+                "OpenTomb": false
+            }
+        ]
+    ]
+}

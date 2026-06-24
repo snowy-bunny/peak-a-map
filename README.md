@@ -35,7 +35,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
    <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-display-biomes-in-run.png?raw=true" width=500px>
 
 - **Map Rotation Info is Preloaded for the Suppported PEAK Version**
-  - Currently supporting map rotation from PEAK 1.63.a
+  - Currently supporting map rotation from PEAK 1.64.a
   
 - **Support for Future Map Patches** 
   - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
