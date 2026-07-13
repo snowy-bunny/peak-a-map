@@ -58,6 +58,13 @@ public class BiomeInfo
         OpenTomb = openTomb ?? false;
     }
 
+    public BiomeInfo(Biome.BiomeType biomeType, string variant = "", bool? openTomb = false)
+    {
+        BiomeTypeInt = (int)biomeType;
+        Variant = CleanVariant(variant, biomeType);
+        OpenTomb = openTomb ?? false;
+    }
+
     public BiomeInfo(int biomeTypeInt, string variant = "", bool openTomb = false)
     {
         BiomeTypeInt = biomeTypeInt;
@@ -81,6 +88,10 @@ public class BiomeInfo
         if (biome == Biome.BiomeType.Mesa)
         {
             return CleanMesaVariant(variant);
+        }
+        if (!HasVariants.Contains(biome))
+        {
+            return "None";
         }
         return variant;
     }
