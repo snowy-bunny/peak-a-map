@@ -14,7 +14,7 @@ internal class MainMenuPageHandlerPatch
         {
             Modal.OpenYesNoModal(new DefaultHeaderModalOption(
                 "[PeakAMap]\nINCOMPLETE MAP ROTATION DATA",
-                "Load and search for missing biome info?"),
+                "Load and search for when TOMB is available?"),
                 LocalizedText.GetText("BACK"),
                 LocalizedText.GetText("OK"),
                 delegate 

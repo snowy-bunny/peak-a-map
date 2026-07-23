@@ -104,6 +104,29 @@ public class MapRotation
         return JsonExtended.EncaseCombine(mapBiomesJsons, '[', ']', true);
     }
 
+    internal List<BiomeInfo>? FillBiomesInfoFromMapBaker(int index)
+    {
+        List<BiomeInfo> biomesInfo = [];
+        MapBaker.BiomeResult biomeResult = MapBaker.Instance.selectedBiomes[index];
+
+        for (int i = 0; i < biomeResult.biomeTypes.Count; i++)
+        {
+            Biome.BiomeType biomeType = biomeResult.biomeTypes[i];
+            string variant = biomeResult.variantNames[i];
+
+            // Skip for maps with Mesa to indicate loading needed to find full info
+            if (biomeType == Biome.BiomeType.Mesa)
+            {
+                return null;
+            }
+
+            biomesInfo.Add(new BiomeInfo(biomeType, variant, null));
+        }
+
+        MapBiomes[index] = biomesInfo;
+        return biomesInfo;
+    }
+
     internal List<BiomeInfo>? FillBiomesInfo(int index, out GameObject? mapObject)
     {
         Scene scene = SceneManager.GetSceneByPath(MapBaker.Instance.ScenePaths[index]);

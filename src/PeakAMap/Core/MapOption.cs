@@ -139,39 +139,28 @@ public class MapOption : MonoBehaviour
         if (biomesInfo != null)
         {
             SetInfoBiomeText(info, biomesInfo[biomeIndex].biomeType, idIndex);
-
-            LocalizedText tombLoc = info.transform
-                .GetChild((int)InfoType.OpenTombInfo).gameObject
-                .AddComponent<LocalizedText>();
-            TextMeshProUGUI tombTmp = tombLoc.gameObject
-                .GetComponent<TextMeshProUGUI>();
-            tombLoc.index = biomesInfo[biomeIndex].OpenTomb ? "TOMB" : "";
-
-            TextMeshProUGUI variantTmp = info.transform
-                .GetChild((int)InfoType.VariantInfo).gameObject
-                .GetTMPro();
-            string variantText = biomesInfo[biomeIndex].Variant;
-            variantTmp.text = variantText;
+            SetInfoOpenTomb(info, biomesInfo[biomeIndex].OpenTomb, biomesInfo[biomeIndex].biomeType);
+            SetInfoVariant(info, biomesInfo[biomeIndex].Variant, biomesInfo[biomeIndex].biomeType);
 
             return;
         }
 
-        // Biome info from MapBaker with missing variant and tomb info
+        // Biome info from MapBaker with missing tomb info
         else if (MapBaker.Instance.ValidSelectedBiomes())
         {
+            string? variant = null;
             Biome.BiomeType biomeType = MapBaker.Instance
                 .selectedBiomes[mapIndex]
                 .biomeTypes[biomeIndex];
 
-            SetInfoBiomeText(info, biomeType, idIndex);
+            variant = BiomeInfo.CleanVariant(MapBaker.Instance
+                .selectedBiomes[mapIndex]
+                .variantNames[biomeIndex],
+                biomeType);
 
-            // Indicate missing variant and tomb info for appropriate biomes
-            info.transform
-                .GetChild((int)InfoType.OpenTombInfo).gameObject
-                .SetActive(biomeType == Biome.BiomeType.Mesa);
-            info.transform
-                .GetChild((int)InfoType.VariantInfo).gameObject
-                .SetActive(BiomeInfo.HasVariants.Contains(biomeType));
+            SetInfoBiomeText(info, biomeType, idIndex);
+            SetInfoOpenTomb(info, null, biomeType);
+            SetInfoVariant(info, variant, biomeType);
 
             return;
         }
@@ -209,6 +198,50 @@ public class MapOption : MonoBehaviour
                 .GetTMPro();
             biomeTmp.text = System.Enum.GetName(typeof(Biome.BiomeType), biomeType).ToUpperInvariant();
         }
+    }
+
+    private static void SetInfoVariant(GameObject info, string? variant, Biome.BiomeType biomeType)
+    {
+        // Fallback for missing variant
+        if (variant == null)
+        {
+            info.transform
+                .GetChild((int)InfoType.VariantInfo).gameObject
+                .SetActive(BiomeInfo.HasVariants.Contains(biomeType));
+            return;
+        }
+
+        // Hide for biomes with no variants
+        if (variant.Equals("None"))
+        {
+            variant = "";
+        }
+
+        TextMeshProUGUI variantTmp = info.transform
+            .GetChild((int)InfoType.VariantInfo).gameObject
+            .GetTMPro();
+        string variantText = variant;
+        variantTmp.text = variantText;
+    }
+
+    private static void SetInfoOpenTomb(GameObject info, bool? openTomb, Biome.BiomeType biomeType)
+    {
+        // Fallback for missing tomb info for mesa biome
+        if (openTomb == null && biomeType == Biome.BiomeType.Mesa)
+        {
+            info.transform
+                .GetChild((int)InfoType.OpenTombInfo).gameObject
+                .SetActive(true);
+            return;
+        }
+
+        LocalizedText tombLoc = info.transform
+            .GetChild((int)InfoType.OpenTombInfo).gameObject
+            .AddComponent<LocalizedText>();
+        TextMeshProUGUI tombTmp = tombLoc.gameObject
+            .GetComponent<TextMeshProUGUI>();
+
+        tombLoc.index = (openTomb ?? false) ? "TOMB" : "";
     }
 
     private void Awake()

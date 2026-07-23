@@ -17,6 +17,16 @@ public sealed class MapRotationHandler
         for (int i = 0; i < _sceneNames.Length; i++)
         {
             _sceneNames[i] = MapBaker.Instance.GetLevel(i);
+
+            // Fill invalid data with MapBaker info
+            if (IsValidMapBiome(i))
+            {
+                continue;
+            }
+            if (CurrMapRotation.FillBiomesInfoFromMapBaker(i) != null)
+            {
+                DataFilesHandler.WriteMapRotation(CurrMapRotation);
+            }
         }
     }
 

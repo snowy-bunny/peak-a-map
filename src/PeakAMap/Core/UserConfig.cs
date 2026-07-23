@@ -13,8 +13,8 @@ public class UserConfig
     {
         LoadMapsOnStart = config.Bind("General", "Pre-Load Missing Maps", true,
             """
-            If enabled, any missing information on map biomes will be
-            retrieved at the game's start.
+            If enabled, a popup will show at the game's start that allows you 
+            to retrieve map biome information when the data is missing.
             """);
 
         ShowBiomesInHUD = config.Bind("General", "Show Biomes in HUD", true,
