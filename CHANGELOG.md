@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.5] - 2026-07-23
+
+### Changed
+
+- Update data file to support PEAK 1.65.a map patch.
+- Change preloading to only be necessary for detecting when Tomb is open and the data file is incomplete.
+- Update map select UI to display variants even when the data file is incomplete.
+
 ## [1.2.4] - 2026-06-24
 
 ### Changed
