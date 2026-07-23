@@ -39,9 +39,11 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
   
 - **Support for Future Map Patches** 
   - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
-  - If PeakAMap doesn't have data for the current map rotation or there are issues with the file containing this data, the map rotation info will be loaded, searched, and saved at the game's start
+  - If PeakAMap doesn't have data for the current map rotation or there are issues with the file containing this data, the map rotation info can be loaded, searched, and saved at the game's start via a popup
+      > NOTE: Most of the time, you will only need to pre-load to know when TOMB is available. Otherwise, you will usually not need to pre-load if you only need to select a map to play or get biome and variant information.
+      
       > TIP: This feature is optional.
-      If you're only interested in selecting a map without the biome info or if preloading takes too long. This feature can be disabled in your `.cfg` file. Instructions on how to do so is further below in the "Configuration" section.
+      If you're only interested in biome info, variant info, and selecting a map without the tomb info or if preloading takes too long. This feature can be disabled in your `.cfg` file. Instructions on how to do so is further below in the "Configuration" section.
 
 - **Partial Language Support** 
   - Some phrases/words that were already supported in game will be supported in PeakAMap.
@@ -103,7 +105,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 ## Configuration:
 
 With the `.cfg` file, you can:
-- Enable or disable map rotation info from loading at the game's start when data files are missing.
+- Enable or disable popup letting you load map rotation info at the game's start when data files are missing.
 - Enable or disable biomes of the map you're playing in from showing in the HUD.
 - Enable or disable biome variant and open tomb information from showing in the map select UI.
 
