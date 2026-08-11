@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.6] - 2026-08-11
+
+### Fixed
+
+- Add appropriate names & localization for Gloom and The Citadel in map select UI and biomes text in HUD.
+
+### Changed
+
+- Update data file to support PEAK 2.0.a map patch.
+
 ## [1.2.5] - 2026-07-23
 
 ### Changed
