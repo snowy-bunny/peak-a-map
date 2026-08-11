@@ -14,7 +14,8 @@ public class BiomeInfo
         { Biome.BiomeType.Volcano, ["CALDERA", "THE KILN"] },
         { Biome.BiomeType.Peak, ["PEAK"] },
         { Biome.BiomeType.Mesa, ["MESA"] },
-        { Biome.BiomeType.Roots, ["ROOTS"] } 
+        { Biome.BiomeType.Roots, ["ROOTS"] },
+        { Biome.BiomeType.Swamp, ["GLOOM", "THE CITADEL"] }
     };
 
     public static HashSet<Biome.BiomeType> HasVariants = new HashSet<Biome.BiomeType>()

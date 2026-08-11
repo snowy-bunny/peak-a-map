@@ -193,6 +193,7 @@ public class MapRotation
                 => biome.gameObject.GetComponentInChildrenActiveSelf<BiomeVariant>(),
 
             Biome.BiomeType.Volcano or
+            Biome.BiomeType.Swamp or
             Biome.BiomeType.Peak
                 => null,
 
