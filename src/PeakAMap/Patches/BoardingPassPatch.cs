@@ -34,7 +34,7 @@ internal class BoardingPassPatch
                 MinutesUntilLevel = 0,
                 SecondsUntilLevel = 0,
                 LevelIndex = customMaps.CustomMapIndex,
-                Message = $"Using PeakAMap Message."
+                Message = string.Empty
             };
             GameHandler.GetService<NextLevelService>().NewData(response);
         }
