@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.7] - 2026-08-13
+
+### Fixed
+
+- Fix bug that changed title screen dev message after leaving a custom map run.
+
+### Changed
+
+- Update data file to support PEAK 2.1.a map patch.
+
 ## [1.2.6] - 2026-08-11
 
 ### Fixed
