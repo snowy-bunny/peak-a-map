@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.8] - 2026-08-18
+
+### Changed
+
+- Update data file to support PEAK 2.2.a map patch.
+
 ## [1.2.7] - 2026-08-13
 
 ### Fixed
