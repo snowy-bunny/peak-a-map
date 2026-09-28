@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.11] - 2026-09-28
+
+### Changed
+
+- Update data file to support PEAK 2.5.a map patch.
+
+### Fixed
+
+- Fix bug where incorrect daily map was selected while playing offline after running a custom map.
+
 ## [1.2.10] - 2026-09-02
 
 ### Changed

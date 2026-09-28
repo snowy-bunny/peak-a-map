@@ -35,7 +35,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
    <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-display-biomes-in-run.png?raw=true" width=500px>
 
 - **Map Rotation Info is Preloaded for the Suppported PEAK Version**
-  - Currently supporting map rotation from PEAK 2.4.a
+  - Currently supporting map rotation from PEAK 2.5.a
   
 - **Support for Future Map Patches** 
   - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
@@ -55,7 +55,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 1. Install a **Thunderstore**-compatible mod manager, such as [**r2modman**](https://thunderstore.io/c/peak/p/ebkr/r2modman/), [**GaleModManager**](https://thunderstore.io/c/peak/p/Kesomannen/GaleModManager/), or [**Thunderstore Mod Manager**](https://www.overwolf.com/app/thunderstore-thunderstore_mod_manager).
 2. Search for **BepInExPack_PEAK** in your mod manager app and install OR go to the [BepInEx Thunderstore page](https://thunderstore.io/c/peak/p/BepInEx/BepInExPack_PEAK/) and click "Install with Mod Manager" > "Open" > "Install".
 3. Search for **PeakAMap** in your mod manager app and install OR go to the [PeakAMap Thunderstore page](https://thunderstore.io/c/peak/p/snowybunny/PeakAMap/) and click "Install with Mod Manager" > "Open" > "Install".
-4. Make sure both mods are enabled and run **PEAK** from of your **mod manager** and play.
+4. Make sure both mods are enabled and run PEAK **from of your mod manager** and play.
 
 ### Method 2: Manual Install
 
@@ -100,7 +100,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 
       <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/final-peakamap-path.png?raw=true" width=900px>
 
-3. Run **PEAK** from **Steam** and play.
+3. Run PEAK **from Steam** and play.
 
 ## Configuration:
 
