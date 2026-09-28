@@ -20,28 +20,6 @@ internal class BoardingPassPatch
 
     public static GameObject Title { get; private set; }
 
-    [HarmonyPatch(nameof(BoardingPass.StartGame))]
-    [HarmonyPrefix]
-    private static bool StartCustomMapPatch()
-    {
-        if (customMaps.loadMode == LoadMode.Custom)
-        {
-            Plugin.Log.LogInfo($"Creating custom login response to load map {customMaps.CustomMapIndex}");
-            LoginResponse response = new LoginResponse
-            {
-                VersionOkay = true,
-                HoursUntilLevel = 0,
-                MinutesUntilLevel = 0,
-                SecondsUntilLevel = 0,
-                LevelIndex = customMaps.CustomMapIndex,
-                Message = string.Empty
-            };
-            GameHandler.GetService<NextLevelService>().NewData(response);
-        }
-
-        return true;
-    }
-
     [HarmonyPatch(nameof(BoardingPass.Initialize))]
     [HarmonyPostfix]
     private static void AddOpenMapsBoardButton()
