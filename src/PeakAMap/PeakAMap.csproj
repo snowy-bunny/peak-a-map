@@ -5,7 +5,7 @@
 		
 		<AssemblyName>com.github.snowybunny.PeakAMap</AssemblyName>
 		<AssemblyTitle>PeakAMap</AssemblyTitle>
-		<Version>1.2.10</Version>
+		<Version>1.2.11</Version>
   </PropertyGroup>
 	
 	<Target Name="OrganizeFiles" AfterTargets="Build">
