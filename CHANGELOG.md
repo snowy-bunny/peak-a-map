@@ -5,6 +5,7 @@
 ### Changed
 
 - Update data file to support PEAK 2.6.a map patch.
+- Update BepInEx dependency to version 5.4.75301.
 
 ## [1.2.11] - 2026-09-28
 
