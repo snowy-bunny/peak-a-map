@@ -77,7 +77,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 
       <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/move-bepinex-to-peak-folder.png?raw=true" width=900px>
 
-   - The final `PEAK` folder should similar to the following: 
+   - The final `PEAK` folder should look similar to the following: 
 
       <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/final-peak-folder.png?raw=true" width=450px>
 
@@ -96,7 +96,7 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 
       <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/move-peakamap-to-peak-folder.png?raw=true" width=900px>
 
-   - The final `PEAK/BepInEx/plugins` folder should similar to the following _(there will be more files/folders if you have more mods installed)_: 
+   - The final `PEAK/BepInEx/plugins` folder should look similar to the following _(there will be more files/folders if you have more mods installed)_: 
 
       <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/final-peakamap-path.png?raw=true" width=900px>
 
