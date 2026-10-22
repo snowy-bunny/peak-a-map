@@ -24,7 +24,7 @@ public static class MapsBoardUI
 
     public static int MapOptionSpacing => 30;
 
-    public static int MapCodeWidth => 85;
+    public static int MapCodeWidth => 100;
 
     public static Color MainFontColor = BoardingPassUI.Panel.gameObject.GetColor();
 
