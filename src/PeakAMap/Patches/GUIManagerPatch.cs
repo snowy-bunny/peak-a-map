@@ -15,10 +15,10 @@ internal class GUIManagerPatch
     [HarmonyPostfix]
     private static void SaveLoadedMapBiomesPatch()
     {          
-        if (MapHandler.Exists && !MapRotationHandler.Instance.CurrentlyLoading)
-        {
-            SaveLoadedMapBiomes();
-        }
+        //if (MapHandler.Exists && !MapRotationHandler.Instance.CurrentlyLoading)
+        //{
+        //    SaveLoadedMapBiomes();
+        //}
     }
 
     private static void SaveLoadedMapBiomes()

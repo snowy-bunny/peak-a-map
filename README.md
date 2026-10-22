@@ -34,16 +34,8 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
   
    <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-display-biomes-in-run.png?raw=true" width=500px>
 
-- **Map Rotation Info is Preloaded for the Suppported PEAK Version**
-  - Currently supporting map rotation from PEAK 2.6.a
-  
-- **Support for Future Map Patches** 
-  - PeakAMap *SHOULD* still display correct information when PEAK patches in new maps.
-  - If PeakAMap doesn't have data for the current map rotation or there are issues with the file containing this data, the map rotation info can be loaded, searched, and saved at the game's start via a popup
-      > NOTE: Most of the time, you will only need to pre-load to know when TOMB is available. Otherwise, you will usually not need to pre-load if you only need to select a map to play or get biome and variant information.
-      
-      > TIP: This feature is optional.
-      If you're only interested in biome info, variant info, and selecting a map without the tomb info or if preloading takes too long. This feature can be disabled in your `.cfg` file. Instructions on how to do so is further below in the "Configuration" section.
+- **Map Rotation Info is Updated for the Suppported PEAK Version**
+  - Currently supporting map rotation from PEAK 3.0.0
 
 - **Partial Language Support** 
   - Some phrases/words that were already supported in game will be supported in PeakAMap.

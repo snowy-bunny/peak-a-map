@@ -18,7 +18,7 @@ public class MapOption : MonoBehaviour
         VariantInfo
     }
 
-    public static string MapCodeFormat = "00";
+    public static string MapCodeFormat = "000";
 
     public const int DefaultNumBiomes = 5;
 

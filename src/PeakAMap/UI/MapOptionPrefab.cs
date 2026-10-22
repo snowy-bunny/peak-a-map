@@ -19,7 +19,7 @@ public sealed class MapOptionPrefab
 
     public GameObject gameObject { get; set; }
 
-    public string MapCodePlaceholder { get; set; } = "--";
+    public string MapCodePlaceholder { get; set; } = "---";
 
     public string InfoTextPlaceholder { get; set; } = "???";
 
@@ -107,7 +107,7 @@ public sealed class MapOptionPrefab
 
         RectTransform rect = border.GetRectTransform();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.sizeDelta = new Vector2(65, 55);
+        rect.sizeDelta = new Vector2(90, 55);
         rect.pivot = new Vector2(0.5f, 0.5f);
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);

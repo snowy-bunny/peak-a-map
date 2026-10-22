@@ -9,6 +9,13 @@ namespace PeakAMap.Core;
 [Serializable]
 public class MapRotation
 {
+    // Hard-coded map indices with open tomb to speed up loading
+    private readonly HashSet<int> _openTombMaps = new HashSet<int>()
+    {
+        2, 4, 9, 16, 17, 20, 25, 31, 36, 37, 40, 46, 49, 50, 56, 58, 62, 72, 81, 84, 87, 88, 92, 97,
+        98, 103, 107, 115, 118, 120, 122, 123, 131, 149, 152, 156, 162, 175, 189, 192, 198, 200
+    };
+
     public string BuildVersion;
 
     public List<BiomeInfo>?[] MapBiomes;
@@ -113,14 +120,9 @@ public class MapRotation
         {
             Biome.BiomeType biomeType = biomeResult.biomeTypes[i];
             string variant = biomeResult.variantNames[i];
+            bool openTomb = (biomeType == Biome.BiomeType.Mesa) && _openTombMaps.Contains(index);
 
-            // Skip for maps with Mesa to indicate loading needed to find full info
-            if (biomeType == Biome.BiomeType.Mesa)
-            {
-                return null;
-            }
-
-            biomesInfo.Add(new BiomeInfo(biomeType, variant, null));
+            biomesInfo.Add(new BiomeInfo(biomeType, variant, openTomb));
         }
 
         MapBiomes[index] = biomesInfo;
