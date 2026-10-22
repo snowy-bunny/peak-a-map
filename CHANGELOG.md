@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0] - 2026-10-22
+
+### Fixed
+
+- Fix preloading that broke due to PEAK update.
+
+### Changed
+
+- Update data file for PEAK 3.0.0 map patch.
+- Change minor map select UI elements to better match large number of maps.
+- Swap to hardcoded data instead of data file to prevent slow loading from large number of maps.
+
 ## [1.2.12] - 2026-10-02
 
 ### Changed
