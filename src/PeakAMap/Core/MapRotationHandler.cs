@@ -124,6 +124,10 @@ public sealed class MapRotationHandler
 
     private IEnumerator LoadSceneIndex(int index)
     {
+        MapBundleService service = GameHandler.GetService<MapBundleService>();
+        MapBundleService.MapBundleData bundle = service.LoadBundlesNearestIndex(index);
+        yield return new WaitUntil(() => !bundle.Loading);
+
         if (SceneManager.loadedSceneCount < _maxLoadedScenes)
         {
             SceneManager.LoadSceneAsync(MapBaker.Instance.GetLevel(index), LoadSceneMode.Additive);
