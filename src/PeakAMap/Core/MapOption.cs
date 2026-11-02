@@ -60,6 +60,8 @@ public class MapOption : MonoBehaviour
         GameObject gameObject = Instantiate(MapOptionPrefab.Instance.gameObject);
         gameObject.StripCloneInName();
         gameObject.transform.SetParentAndScale(parent, worldPositionStays: false);
+        gameObject.TryGetComponent(out Image image);
+        image.color = GetBgColor(index);
 
         GameObject mapCode = gameObject.QueryChildren("MapCode");
         mapCode.GetTMPro().text = index.ToString(MapCodeFormat);
@@ -366,32 +368,9 @@ public class MapOption : MonoBehaviour
         }
     }
 
-    public static void UpdateAllBgColors(GameObject list)
+    private static Color GetBgColor(int index)
     {
-        for (int i = 0; i < list.transform.childCount; i++)
-        {
-            list.transform.GetChild(i).TryGetComponent(out Image image);
-            image.color = GetBgColor(i, list);
-        }
-    }
-
-    private static Color GetBgColor(int index, GameObject list)
-    {
-        int colParity;
-        int rowParity;
-        int numRows = (int)System.Math.Ceiling((decimal)list.transform.childCount / VisibleCols);
-
-        if (numRows <= VisibleRows)
-        {
-            colParity = index / VisibleRows % 2;
-            rowParity = (index - VisibleRows * colParity) % 2;
-        }
-        else
-        {
-            colParity = index / numRows % 2;
-            rowParity = (index - numRows * colParity) % 2;
-        }
-
-        return colParity == rowParity ? Cell1Color : Cell2Color;
+        int colorIndex = (int)System.Math.Ceiling((decimal)index / 2);
+        return (colorIndex % 2 == 0) ? Cell1Color : Cell2Color;
     }
 }

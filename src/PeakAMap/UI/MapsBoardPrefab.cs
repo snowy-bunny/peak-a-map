@@ -202,7 +202,7 @@ internal sealed class MapsBoardPrefab
         GridLayoutGroup layout = list.GetComponent<GridLayoutGroup>();
         layout.childAlignment = TextAnchor.UpperLeft;
         layout.startCorner = GridLayoutGroup.Corner.UpperLeft;
-        layout.startAxis = GridLayoutGroup.Axis.Vertical;
+        layout.startAxis = GridLayoutGroup.Axis.Horizontal;
         layout.constraint = GridLayoutGroup.Constraint.Flexible;
         layout.constraintCount = VisibleCols;
 
@@ -496,7 +496,6 @@ internal sealed class MapsBoardPrefab
         scroll.content = rect;
         scroll.viewport = viewportRect;
         scroll.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
-        MapOption.UpdateAllBgColors(mapsList);
 
         int numRows = (int)System.Math.Ceiling((decimal)mapsList.transform.childCount / VisibleCols);
 
