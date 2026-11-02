@@ -56,61 +56,6 @@ public class MapRotation
         }
     }
 
-    public static MapRotation FromJson(string json)
-    {
-        MapRotation mapRotation = JsonUtility.FromJson<MapRotation>(json);
-        string arrayJson = JsonExtended.GetValueFromJson(json, "MapBiomes", true);
-
-        string[] mapBiomesJson = JsonExtended.SplitSections(arrayJson, '[', ']');
-
-        mapRotation.MapBiomes = new List<BiomeInfo>[mapBiomesJson.Length];
-        for (int i = 0; i < mapBiomesJson.Length; i++)
-        {
-            if (mapBiomesJson[i] == "null")
-            {
-                mapRotation.MapBiomes[i] = null;
-            }
-            else
-            {
-                mapRotation.MapBiomes[i] = JsonExtended.ListFromJson<BiomeInfo>(mapBiomesJson[i]);
-
-            }
-        }
-
-        return mapRotation;
-    }
-
-    public static string ToJson(MapRotation mapRotation)
-    {
-        string json = JsonUtility.ToJson(mapRotation, true);
-        if (json.Contains("\"MapBiomes\""))
-        {
-            return json;
-        }
-        string rotationJson = JsonExtended.CreateJsonObject("MapBiomes", MapBiomesToJson(mapRotation.MapBiomes), true);
-        return JsonExtended.CombineJson(true, json, rotationJson);
-    }
-
-    private static string MapBiomesToJson(List<BiomeInfo>?[] mapBiomes)
-    {
-        string[] mapBiomesJsons = new string[mapBiomes.Length];
-        List<BiomeInfo>? biomesInfo;
-        for (int i = 0; i < mapBiomes.Length; i++)
-        {
-            biomesInfo = mapBiomes[i];
-            if (biomesInfo == null)
-            {
-                mapBiomesJsons[i] = "null";
-            }
-            else
-            {
-                mapBiomesJsons[i] = JsonExtended.ListToJson(biomesInfo, true);
-
-            }
-        }
-        return JsonExtended.EncaseCombine(mapBiomesJsons, '[', ']', true);
-    }
-
     internal List<BiomeInfo>? FillBiomesInfoFromMapBaker(int index)
     {
         List<BiomeInfo> biomesInfo = [];
