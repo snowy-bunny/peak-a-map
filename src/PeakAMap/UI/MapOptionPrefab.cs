@@ -23,6 +23,8 @@ public sealed class MapOptionPrefab
 
     public string InfoTextPlaceholder { get; set; } = "???";
 
+    public string MapCodeRandom { get; set; } = "???";
+
     public GameObject Info { get; set; }
 
     public GameObject Line { get; set; }

@@ -21,12 +21,13 @@ internal class AirportCheckInKioskPatch
     [HarmonyPrefix]
     private static bool LoadCustomMapPatch(AirportCheckInKiosk __instance, int ascent, byte[] serializedRunSettings)
     {
-        if (NetCode.Session.IsHost && customMaps.loadMode == LoadMode.Custom)
+        if (NetCode.Session.IsHost && customMaps.loadMode != LoadMode.Daily)
         {
-            Plugin.Log.LogInfo($"Loading custom map {customMaps.CustomMapIndex}");
+            int mapIndex = customMaps.SelectedMapIndex;
+            Plugin.Log.LogInfo($"Loading {customMaps.loadMode.GetName().ToLower()} map {mapIndex}");
 
             string text = "WilIsland";
-            text = SingletonAsset<MapBaker>.Instance.GetLevel(customMaps.CustomMapIndex + NextLevelService.debugLevelIndexOffset);
+            text = SingletonAsset<MapBaker>.Instance.GetLevel(mapIndex + NextLevelService.debugLevelIndexOffset);
             if (string.IsNullOrEmpty(text))
             {
                 text = "WilIsland";

@@ -295,7 +295,7 @@ internal sealed class MapsBoardPrefab
         rect.pivot = new Vector2(1, 0.5f);
 
         TextMeshProUGUI txt = selectedMapCode.GetTMPro();
-        txt.text = "--";
+        txt.text = "---";
         txt.font = MainFont;
         txt.color = MapCodeColor;
         txt.fontSize = 36;

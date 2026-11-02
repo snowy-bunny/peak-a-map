@@ -153,6 +153,12 @@ public class MapsBoard : MenuWindow
     {
         Vector3 localPos = MapsList.transform.localPosition;
 
+        if (CustomMaps.Instance.loadMode == LoadMode.Random)
+        {
+            MapsList.transform.localPosition = new Vector3(localPos.x, _initMapListY, localPos.z);
+            return;
+        }
+
         int numRows = (int)System.Math.Ceiling((decimal)MapsList.transform.childCount / MapsBoardUI.VisibleCols);
         int maxUpperRow = numRows - MapsBoardUI.VisibleRows;
         int row = CustomMaps.Instance.SelectedMapIndex / MapsBoardUI.VisibleCols;
@@ -246,11 +252,28 @@ public class MapsBoard : MenuWindow
             Plugin.Log.LogError("SelectedMapCode was not found. Cannot update selected map display.");
             return;
         }
+
+        if (CustomMaps.Instance.loadMode == LoadMode.Random)
+        {
+            UpdateSelectedMapCodeRandom();
+            return;
+        }
+
         SelectedMapCode.text = CustomMaps.Instance.SelectedMapIndex.ToString(MapOption.MapCodeFormat);
 
         for (int i = 0; i < MapSelectedIndicators.Length; i++)
         {
             MapSelectedIndicators[i].SetActive(i == CustomMaps.Instance.SelectedMapIndex);
+        }
+    }
+
+    private void UpdateSelectedMapCodeRandom()
+    {
+        SelectedMapCode.text = MapOptionPrefab.Instance.MapCodeRandom;
+
+        for (int i = 0; i < MapSelectedIndicators.Length; i++)
+        {
+            MapSelectedIndicators[i].SetActive(false);
         }
     }
 

@@ -109,9 +109,13 @@ internal class BoardingPassPatch
             string mapCode = customMaps.SelectedMapIndex.ToString(MapOption.MapCodeFormat);
             OpenButtonTMPro.text = $"MAP {mapCode}";
         }
-        else
+        else if (customMaps.loadMode == LoadMode.Daily)
         {
             OpenButtonTMPro.text = "DAILY MAP";
+        }
+        else
+        {
+            OpenButtonTMPro.text = "???";
         }
     }
 }
