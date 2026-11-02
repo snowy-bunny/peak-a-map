@@ -33,6 +33,8 @@ public class MapsBoard : MenuWindow
 
     public override bool closeOnUICancel => true;
 
+    private float _initMapListY { get; set; }
+
     public static void Instantiate()
     {
         Plugin.Log.LogInfo("Creating Canvas_MapsBoard.");
@@ -89,6 +91,8 @@ public class MapsBoard : MenuWindow
             .GetComponentsInChildren<MapOption>()
             .Select(option => option.MapCodeBorder)
             .ToArray();
+
+        _initMapListY = MapsList.transform.localPosition.y;
     }
 
     public override void Initialize()
@@ -106,6 +110,12 @@ public class MapsBoard : MenuWindow
         {
             DisplayBiomesHUDToggle.OnClick();
         });
+    }
+
+    public override void OnOpen()
+    {
+        base.OnOpen();
+        scrollMapListToSelected();
     }
 
     private new void Update()
@@ -137,6 +147,26 @@ public class MapsBoard : MenuWindow
     {
         base.OnClose();
         OpenBoardingPass();
+    }
+
+    private void scrollMapListToSelected()
+    {
+        Vector3 localPos = MapsList.transform.localPosition;
+
+        if (CustomMaps.Instance.loadMode == LoadMode.Random)
+        {
+            MapsList.transform.localPosition = new Vector3(localPos.x, _initMapListY, localPos.z);
+            return;
+        }
+
+        int numRows = (int)System.Math.Ceiling((decimal)MapsList.transform.childCount / MapsBoardUI.VisibleCols);
+        int maxUpperRow = numRows - MapsBoardUI.VisibleRows;
+        int row = CustomMaps.Instance.SelectedMapIndex / MapsBoardUI.VisibleCols;
+        row = System.Math.Min(row, maxUpperRow);
+
+        float cellHeight = MapsList.GetComponent<GridLayoutGroup>().cellSize.y;
+
+        MapsList.transform.localPosition = new Vector3(localPos.x, _initMapListY + (cellHeight * row), localPos.z);
     }
 
     private void OpenBoardingPass()
@@ -222,11 +252,28 @@ public class MapsBoard : MenuWindow
             Plugin.Log.LogError("SelectedMapCode was not found. Cannot update selected map display.");
             return;
         }
+
+        if (CustomMaps.Instance.loadMode == LoadMode.Random)
+        {
+            UpdateSelectedMapCodeRandom();
+            return;
+        }
+
         SelectedMapCode.text = CustomMaps.Instance.SelectedMapIndex.ToString(MapOption.MapCodeFormat);
 
         for (int i = 0; i < MapSelectedIndicators.Length; i++)
         {
             MapSelectedIndicators[i].SetActive(i == CustomMaps.Instance.SelectedMapIndex);
+        }
+    }
+
+    private void UpdateSelectedMapCodeRandom()
+    {
+        SelectedMapCode.text = MapOptionPrefab.Instance.MapCodeRandom;
+
+        for (int i = 0; i < MapSelectedIndicators.Length; i++)
+        {
+            MapSelectedIndicators[i].SetActive(false);
         }
     }
 

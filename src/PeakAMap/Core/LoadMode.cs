@@ -5,7 +5,8 @@ namespace PeakAMap.Core;
 public enum LoadMode
 {
     Custom,
-    Daily
+    Daily,
+    Random
 }
 
 public static class LoadModeUtil

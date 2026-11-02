@@ -1,4 +1,6 @@
-﻿namespace PeakAMap.Core;
+﻿using System;
+
+namespace PeakAMap.Core;
 public sealed class CustomMaps
 {
     private static readonly CustomMaps _instance = new();
@@ -7,6 +9,7 @@ public sealed class CustomMaps
     {
         loadMode = LoadMode.Custom;
         _customMapIndex = DailyMapIndex;
+        _random = new Random();
     }
 
     static CustomMaps() { }
@@ -18,6 +21,8 @@ public sealed class CustomMaps
     public string LoadModeName => LoadModeUtil.GetName(loadMode);
 
     private int _customMapIndex;
+
+    private Random _random;
 
     public int CustomMapIndex
     {
@@ -36,11 +41,21 @@ public sealed class CustomMaps
         }
     }
 
+    public int RandomMapIndex
+    {
+        get { return _random.Next(0, MapBaker.Instance.ScenePaths.Length); }
+    }
+
     public int SelectedMapIndex
     {
         get
         {
-            return (loadMode == LoadMode.Custom) ? CustomMapIndex : DailyMapIndex;
+            return (loadMode) switch
+            {
+                LoadMode.Custom => CustomMapIndex,
+                LoadMode.Random => RandomMapIndex,
+                _ => DailyMapIndex
+            };
         }
     }
 }

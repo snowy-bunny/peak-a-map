@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.3.1] - 2026-11-02
+
+### Added
+
+- Add option to play random map using the mode dropdown in the map select UI.
+
+### Changed
+
+- Reorganize maps in map select UI to be ordered horizontally rather than vertically.
+- Update map select UI to be automatically scrolled to the selected map index when open.
+
 ## [1.3.0] - 2026-10-22
 
 ### Fixed

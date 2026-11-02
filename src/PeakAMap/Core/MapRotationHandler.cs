@@ -31,46 +31,15 @@ public sealed class MapRotationHandler
 
     public bool CurrentlyLoading { get; private set; } = false;
 
-    private bool _prevFoundAllMapBiomes = false;
-
-    private bool FoundAllMapBiomes
-    {
-        get
-        {
-            if (_prevFoundAllMapBiomes)
-            {
-                return true;
-            }
-
-            for (int i = 0; i < _sceneNames.Length; i++)
-            {
-                if (!IsValidMapBiome(i))
-                {
-                    return false;
-                }
-            }
-
-            _prevFoundAllMapBiomes = true;
-            return true;
-        }
-    }
-
     internal bool _cancelIndicator = false;
-
-    public bool NeedToLoad
-    {
-        get
-        {
-            return UserConfig.LoadMapsOnStart.Value && (!FoundAllMapBiomes) && (!_cancelIndicator);
-        }
-    }
 
     private readonly string _loadingId = "LOADING";
 
-    private readonly int _maxLoadedScenes = 15; 
+    private readonly int _maxLoadedScenes = 15;
 
     private bool IsValidMapBiome(int index)
     {
+        // Modify to customize maps to preload.
         return !(CurrMapRotation.MapBiomes[index] == null);
     }
 
@@ -105,7 +74,9 @@ public sealed class MapRotationHandler
             LocalizedText.mainTable[_loadingId][(int)LocalizedText.CURRENT_LANGUAGE] = $"{originalLoadingText} ({progressText})";
 
             yield return LoadSceneIndex(i);
-            DataFilesHandler.WriteMapRotation(CurrMapRotation);
+
+            // Use different method of logging info (below was prev method)
+            //DataFilesHandler.WriteMapRotation(CurrMapRotation);
         }
 
         button?.onClick.RemoveAllListeners();
@@ -173,12 +144,6 @@ public sealed class MapRotationHandler
     {
         _cancelIndicator = true;
         TextMeshProUGUI tmp = description.GetTMPro();
-
-        if (!FoundAllMapBiomes)
-        {
-            tmp.text = "DIDN'T FINISHED FINDING EVERY MAPS' INFO.\n" + 
-                "SEARCH WILL CONTINUE ON NEXT LAUNCH.\n";
-        }
-        tmp.text += "NOW CANCELING...";
+        tmp.text = "NOW CANCELING...";
     }
 }
