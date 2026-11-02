@@ -2,7 +2,8 @@
 
 **Find out details such as the biomes, biome variants, and whether the Tomb is open for the current map rotation. Then select a map to play with an in-game UI.** 
 
-PeakAMap searches for details of each map and lets players pick one to play. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand and saved in a file included with PeakAMap. If this file is missing or a new maps are patched in, then PeakAMap will let the player create this file when the game starts. _For slower PCs, this process may take 2-4 minutes._
+PeakAMap searches for details of each map and lets players pick one to play. **There shouldn't be, but there may be inaccuracies.** For performance reasons, the loading and searching is done beforehand, and the data is included in PeakAMap.
+> NOTE: In previous versions, PeakAMap allowed users to preload the data themselves whenever the map rotation changed. However, now that the map rotation is permanent, this feature has been removed. Instead, any data that needs to be preloaded is hardcoded into PeakAMap to improve loading times.
 
 ## Features
 
@@ -13,7 +14,6 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
    <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-custom-detailed-english.png?raw=true" width=800px>
 
 	- Biomes of each map are displayed.
-	- Choose to play a custom map or to play the daily map.
 	- If you're playing with friends, only the host needs PeakAMap for everyone to play a selected map.
       > NOTE: The host must be the one to start the game for the selected map to be played.
 
@@ -25,6 +25,15 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
    
       <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-more-details.png?raw=true" width=500px>
 
+- **Use the Dropdown to Choose a Map Selection Mode**
+
+   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/mode-dropdown.png?raw=true" width=800px>
+
+   - Choose to play a custom, daily, or random map:
+     - CUSTOM - *Manually select a map to play.*
+     - DAILY - *Play the default daily map.*
+     - RANDOM - *Play a random map in the rotation.*
+
 - **Biomes are Displayed in the HUD During Your Run**
   
   <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/biomes-hud-english.png?raw=true" width=800px>
@@ -33,9 +42,6 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
    If you don't like having extra text on your screen, this feature can be disabled with the in-game toggle.
   
    <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/toggle-display-biomes-in-run.png?raw=true" width=500px>
-
-- **Map Rotation Info is Updated for the Suppported PEAK Version**
-  - Currently supporting map rotation from PEAK 3.0.0
 
 - **Partial Language Support** 
   - Some phrases/words that were already supported in game will be supported in PeakAMap.
@@ -97,7 +103,6 @@ PeakAMap searches for details of each map and lets players pick one to play. **T
 ## Configuration:
 
 With the `.cfg` file, you can:
-- Enable or disable popup letting you load map rotation info at the game's start when data files are missing.
 - Enable or disable biomes of the map you're playing in from showing in the HUD.
 - Enable or disable biome variant and open tomb information from showing in the map select UI.
 
@@ -120,9 +125,11 @@ With the `.cfg` file, you can:
 
 <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-daily-simple-english.png?raw=true">
 
-#### Loading screen when data is missing:
+#### Boarding pass and map select UIs with random map selected and "More Details" disabled:
 
-<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/loading-maps-screen.png?raw=true">
+<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/boarding-pass-random-map-button.png?raw=true">
+
+<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-random-simple-english.png?raw=true">
 
 #### Biomes in HUD during a Custom Run:
 
@@ -134,7 +141,7 @@ With the `.cfg` file, you can:
 
 <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-daily-japanese.png?raw=true">
 
-<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-daily-turkish.png?raw=true">
+<img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/map-select-ui-random-turkish.png?raw=true">
 
 <img src="https://github.com/snowy-bunny/peak-a-mod/blob/main/assets/biomes-hud-chinese-simplified.png?raw=true">
 
